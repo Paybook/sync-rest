@@ -8,16 +8,16 @@ Todo esto lo realizaremos consumiendo el [API REST de Paybook Sync](https://www.
 2. [Configuración de Postman](#postman)
 3. [API Key](#api_key)
 4. [Usuarios](#users)
-	- [Consulta de Usuarios](#get_users)
-	- [Creación de Usuarios](#create_users)
+  - [Consulta de Usuarios](#get_users)
+  - [Creación de Usuarios](#create_users)
 5. [Sesiones](#sessions)
 6. [Catálogos de Instituciones](#catalogues)
-	- [Catálogo de instituciones o sitios de producción](#sites_prod_catalogues)
-	- [Catálogo de instituciones o sitios de prueba](#sites_testing_catalogues)
+  - [Catálogo de instituciones o sitios de producción](#sites_prod_catalogues)
+  - [Catálogo de instituciones o sitios de prueba](#sites_testing_catalogues)
 7. [Cuentas y Credenciales](#accounts_and_credentials)
-	- [Cuentas](#accounts)
-	- [Credenciales](#credentials)
-	- [Creación de cuentas y credenciales](#create_accounts_and_credentials)
+  - [Cuentas](#accounts)
+  - [Credenciales](#credentials)
+  - [Creación de cuentas y credenciales](#create_accounts_and_credentials)
 8. [Estatus de Sincronización](#sync_status)
 9. [Transacciones](#transactions)
 10. [Conclusion](#conclusion)
@@ -73,11 +73,9 @@ A estos clientes Mateo les está desarrollando una aplicación y para esa aplica
 
 -> ![](https://github.com/Paybook/sync-rest/blob/master/src/ak_user.png) <-
 
--> ![](https://github.com/Paybook/sync-py/blob/master/token.png) <-
-
 Pero una mejor práctica es hacer una clasificación correcta de la información. La información de esas cuentas bancarias, si bien Mateo la está usando para las aplicaciones que está desarrollando, no le pertenece a él. Entonces lo correcto sería que Mateo creará un usuario por cada uno de sus clientes (esos usuarios desde luego estarían ligados al API Key de Mateo y con ello a su cuenta de Paybook Sync) pero la información de las instituciones que se sincronicen, además de estar ligada a la cuenta de Mateo, estaría clasificada por usuario, es decir, sabríamos quién es el dueño de esa información,
 
--> ![](./src/ak_users.png =150x200) <-
+-> ![](https://github.com/Paybook/sync-rest/blob/master/src/ak_users.png =150x200) <-
 
 Importante, estos usuarios que Mateo ha creado no tienen una cuenta de Paybook, ni tampoco una cuenta de Paybook Sync, el único que tiene una cuenta en Paybook es Mateo. Él únicamente ha creado estos usuarios para clasificar la información de su cuenta de Sync de tal manera que el pueda hacer consultas y gestionar esa información fácilmente. 
 
@@ -90,11 +88,11 @@ Una vez que hallamos entendido la diferencia entre nuestro API Key y nuestros us
 
 En nuestra colección de Postman podemos seleccionar la primer petición "Get users linked to an API key":
 
--> ![](./src/req1.png =200x200) <-
+-> ![](https://github.com/Paybook/sync-rest/blob/master/src/req1.png =200x200) <-
 
 Una vez que hallamos seleccionado está petición podemos observar la estructura de la petición:
 
--> ![](./src/postman.png =500x300) <-
+-> ![](https://github.com/Paybook/sync-rest/blob/master/src/postman.png =500x300) <-
 
 A continuación se describen brevemente los componentes básicos que estaremos analizando a lo largo del tutorial: 
 
@@ -107,7 +105,7 @@ A continuación se describen brevemente los componentes básicos que estaremos a
 
 Entonces una vez que hemos entendido la estructura básica de Postman, veremos que para la consulta de usuarios la petición se configura de la siguiente manera:
 
--> ![](./src/get_users.png =600x100) <-
+-> ![](https://github.com/Paybook/sync-rest/blob/master/src/get_users.png =600x100) <-
 
 Esto indica que estamos:
 
@@ -119,11 +117,11 @@ Esto indica que estamos:
 
 Al momento de dar clic en "Send" se hace la petición al API. Y en la parte inferior de la pantalla (recuadro azul en la imagen)observaremos la respuesta del API, es decir, la lista de usuarios ligados a nuestra API Key:
 
--> ![](./src/resp1.png =500x300) <-
+-> ![](https://github.com/Paybook/sync-rest/blob/master/src/resp1.png =500x300) <-
 
 Es importante mencionar que para ver está respuesta tendremos que estar situados en la pestaña "Body" (recuadro verde). Si nuestra API key es inválida, o bien, no la enviamos como parámetro o no está vigente, en resumen, si la autenticación del desarrollador con el API no es correcta, entonces no obtendremos la lista de usuarios y obtendremos una respuesta de error como la siguiente:
 
--> ![](./src/error.png =600x200) <-
+-> ![](https://github.com/Paybook/sync-rest/blob/master/src/error.png =600x200) <-
 
 Cualquier petición que hagamos al API de Sync (en cualquier endpoint, con cualquier método o verbo, etc) si la autenticación no es correcta enviará un error como este.
 
@@ -143,7 +141,7 @@ Ojo, si en un principio no has creado usuarios la respuesta te debe regresar un 
 
 Para crear un usuario podemos seleccionar en la colección de Postman la segunda petición "Creates a new user":
 
--> ![](./src/creates_user.png =600x200) <-
+-> ![](https://github.com/Paybook/sync-rest/blob/master/src/creates_user.png =600x200) <-
 
 Aquí, a diferencia de la consulta de usuarios, estamos enviando los parámetros en Body, sin embargo las demás especificaciones son iguales. 
 
@@ -155,11 +153,11 @@ Esto indica que estamos:
 
 Y podremos ver una respuesta como la siguiente:
 
--> ![](./src/resp_user.png =600x200) <-
+-> ![](https://github.com/Paybook/sync-rest/blob/master/src/resp_user.png =600x200) <-
 
 Entonces, sabiendo esto, lo que Mateo tendría que hacer es crear 3 usuarios, uno para José Ochoa, otro para WalMart y otro para Starbucks (como se hizo en el punto 1.2) y el conseguiría tener la siguiente estructura:
 
--> ![](./src/ak_users.png =150x200) <-
+-> ![](https://github.com/Paybook/sync-rest/blob/master/src/ak_users.png =150x200) <-
 
 Una vez hecho esto si el consulta los usuarios ligados a su API key (como se hizo en el punto 1.1) obtendría un arreglo con sus tres usuarios. 
 
@@ -172,11 +170,11 @@ Otro de los conceptos que es importante que entendamos es el manejo de sesiones.
 
 Otro modo de autenticarte con el API es por medio de una sesión. La diferencia particular es que una sesión va a ligada directamente a un usuario y únicamente puede consultar o actualizar la información de éste (a diferencia del API key con la que puedes consultar todo). Para iniciar una sesión puedes seleccionar en Postman la petición "Inits Session":
 
--> ![](./src/inits_session.png =600x100) <-
+-> ![](https://github.com/Paybook/sync-rest/blob/master/src/inits_session.png =600x100) <-
 
 Y obtendremos una respuesta como la siguiente:
 
--> ![](./src/resp_session.png =600x200) <-
+-> ![](https://github.com/Paybook/sync-rest/blob/master/src/resp_session.png =600x200) <-
 
 Dentro de los parámetros de la sesión está el token,
 
@@ -204,7 +202,7 @@ Continuando la situación de Mateo. Quedamos que Mateo tenía 3 clientes:
 
  Él ya creo un usuario para cada uno de sus clientes. Él sabe que, por ejemplo, respecto a José Ochoa necesita tener acceso a su información en el SAT (sus facturas tanto de ingresos como egresos), pero también necesita acceso partícularmente a las dos cuentas bancarias que maneja José Ochoa, Santander y Banamex, así como el cliente José Ochoa, WalMart y Starbucks tienen sus propias cuentas bancarias y registro fiscal, entonces la cuenta de Paybook Sync de Mateo podría tener la siguiente estructura:
  
--> ![](./src/inst.png =250x200) <-
+-> ![](https://github.com/Paybook/sync-rest/blob/master/src/inst.png =250x200) <-
 
 Aquí podemos ver que cada usuario tendría sus propias instituciones (entiéndase instituciones como una forma de referirse a los bancos o el SAT), es decir, José Ochoa tendría registrado al SAT así como su cuenta de Santander y Banamex. Walmart tendría registradas sus propias cuentas de Banamex y Americans Express y lo mismo para Starbucks Juriquilla con Banamex, BBVA y Banorte, pero ¿Cómo quedaría todo esto estructurado en nuestra cuenta de Paybook Sync, o bien, en la cuenta de Mateo?.
 
@@ -216,15 +214,15 @@ Aquí podemos ver que cada usuario tendría sus propias instituciones (entiénda
 
 Bien, lo primero que hay que entender es que Paybook Sync nos dará un catálogo de las instituciones que podemos sincronizar para nuestros usuarios,
 
--> ![](./src/sites.png =200x200) <-
+-> ![](https://github.com/Paybook/sync-rest/blob/master/src/sites.png =200x200) <-
 
 Entonces las instituciones que Mateo tendría que sincronizar para sus clientes tendría que ser seleccionadas de este catálogo,
 
--> ![](./src/prod.png =500x300) <-
+-> ![](https://github.com/Paybook/sync-rest/blob/master/src/prod.png =500x300) <-
 
 Entonces, como se ve en el diagrama anterior, las instituciones que Mateo quiera sincronizar para sus usuarios las tiene que obtener del conjunto de catálogo de instituciones de Paybook Sync (catálogo predefinido). Para esto podemos hacer el siguiente llamado al API (en Postman "Get testing sites (institutions)"):
 
--> ![](./src/catalogues.png =600x100) <-
+-> ![](https://github.com/Paybook/sync-rest/blob/master/src/catalogues.png =600x100) <-
 
 Es importante mencionar que en este caso se están consultando el conjunto de catálogos de prueba que Paybook Sync pone a nuestra disposición, es por eso que se esta mandando el parámetro ***"is_test" en true***. Si se quiere consultar el conjunto de catálogos de producción únicamente hay que omitir enviar el parámetro ***"is_test"***. También note como en este caso la autentación la estamos haciendo por medio del ***token***.
 
@@ -277,7 +275,7 @@ Para realizar pruebas es preferible usar los catálogos de prueba de Paybook Syn
 
 Por lo que Mateo, con el objetivo de realizar pruebas o levantar el desarrollo de sus aplicaciones, podría tener algo así:
 
--> ![](./src/test.png =500x300) <-
+-> ![](https://github.com/Paybook/sync-rest/blob/master/src/test.png =500x300) <-
 
 Mediante este catálogo de prueba Mateo o tu podrán, por ejemplo, simular la sincronización del SAT, recordemos que esta sincronización exige un RFC -- un usuario -- y CIEC -- una contraseña -- por lo que sincronizando una institución de prueba Normal -- que solo pide usuario y contraseña -- se puede simular la sincronziación del SAT. Del mismo modo se puede hacer para simular la sincronización de Santander, Banamex, BBVA y Banorte -- o cualquier institución -- solo haciendo uso de la institición de prueba que se le parezca considerando únicamente la manera de autenticarse con ésta. Entonces Mateo podría tener algo así:
 
@@ -303,7 +301,7 @@ Aquí hay cuestiones importantes que Mateo o tu podrían enfrentarse. Pueden sin
 
 Para resolver esta clase de cosas existe el elemento Cuentas (accounts). En realidad Mateo no está sincronizando instituciones como tal, en el fondo está sincronizando cuentas específicas (cuentas bancarias o RFCs) que pertenecen, por supuesto, a determinadas instituciones. Entonces por ejemplo en el caso de su cliente José Ochoa, Mateo tendría algo así:
 
--> ![](./src/accounts.png =300x150) <-
+-> ![](https://github.com/Paybook/sync-rest/blob/master/src/accounts.png =300x150) <-
 
 La forma en que Paybook Sync logra esto es por medio de las cuentas. Cada RFC, o bien, cada cuenta bancaria sería una cuenta (account) y éstas al final tendrían una relación con una institución (sitios). En resumen, toda cuenta (account) estaría relacionada con una institución o sitio (site) . Más adelante veremos que las cuentas nos ayudan principalmente para la clasificación de la información y con ello hacer consultas más especificas como en el caso que hemos presentado anteriormente con Mateo.
 
@@ -384,8 +382,8 @@ Esto quiere decir que al crear unas credenciales de la institución Normal, el v
 
 ```
 {
-	"username" : "username_value",
-	"password" : "password_value"
+  "username" : "username_value",
+  "password" : "password_value"
 }
 ```
 
@@ -417,8 +415,8 @@ Esto quiere decir que al crear unas credenciales de la institución SAT, el valo
 
 ```
 {
-	"rfc" : "rfc_value",
-	"password" : "password_value"
+  "rfc" : "rfc_value",
+  "password" : "password_value"
 }
 ```
 
@@ -439,17 +437,17 @@ La misma lógica se tiene que realizar para sincronizar cualquier institución. 
 
 Entonces una vez que sabemos todo esto para crear unas credenciales podemos hacer lo siguiente (en Postman "Create a new credentials"):
 
--> ![](./src/credentials.png =600x150) <-
+-> ![](https://github.com/Paybook/sync-rest/blob/master/src/credentials.png =600x150) <-
 
 La creación de credenciales nos dará una respuesta como la siguiente:
 
--> ![](./src/resp_cred.png =600x150) <-
+-> ![](https://github.com/Paybook/sync-rest/blob/master/src/resp_cred.png =600x150) <-
 
 Los distintos valores que vemos en la respuesta y como estos se utilizan los analizaremos en las siguientes secciones.
 
 Siguiendo con el escenario de Mateo. El ya tiene sus usuarios creados, ahora el tendrá que crear unas ***CREDENECIALES*** por cada ***CUENTA*** de cada ***INSTITUCIÓN O SITIO*** de cada ***USUARIO*** que quiera sincronizar. Con los requerimientos nuevos que agregó su cliente José Ochoa, y suponiendo que Walmart únicamente tienen una cuenta en Banamex y una American Express y que Starbucks Juriquilla únicamente tienen una cuenta en Banamex, BBVA y Banorte el escenario de la cuenta de Paybook Sync de Mateo sería el siguiente:
 
--> ![](./src/all.png =500x400) <-
+-> ![](https://github.com/Paybook/sync-rest/blob/master/src/all.png =500x400) <-
 
 En resumen todo quedará ligado al API key de Mateo pero de una manera organizada. En resumen Mateo tendrá:
 
@@ -495,11 +493,11 @@ En este caso únicamente explicaremos la propiedad "status". Las demás están f
 
 La propiedad ***"status"*** es una URL específica que Paybook Sync nos crea para qué, a través de ella, podamos consultar precisamente eso, el estatus de la sincronización de las credenciales que hemos creado. En Postman podemos seleccionar la petición "Check credentials sync status"
 
--> ![](./src/status.png =600x150) <-
+-> ![](https://github.com/Paybook/sync-rest/blob/master/src/status.png =600x150) <-
 
 Cuya respuesta es una serie de códigos (códigos de estatus de sincronización):
 
--> ![](./src/resp_status.png =600x250) <-
+-> ![](https://github.com/Paybook/sync-rest/blob/master/src/resp_status.png =600x250) <-
 
 Los diferentes estatus y su significado se pueden consultar en la [documentación general de Paybook Sync](https://www.paybook.com/sync/docs) y es trabajo del desarrollador programar su propia rutina dependiendo el tipo de estatus que obtenga, es decir, si el estatus es 401 que significa que las credenciales introducidas son iválidas, es trabajo del desarrollador programar una rutina que vuelva a pedir las credenciales y volver a consumir el endpoint de crear credenciales está vez con los valores adecuados. 
 
@@ -510,7 +508,7 @@ Partícularmente si hemos sincronizado una institución de prueba Normal, podemo
 
 Una vez que hemos creado credenciales, monitoreado su estatus y verficado que la sincronización haya terminado exitósamente (código 200 en status), podemos consultar las transacciones de esa cuenta en específico. En Postman podemos seleccionar la petición "Get transactions" y ejecutarla. 
 
--> ![](./src/transactions.png =600x150) <-
+-> ![](https://github.com/Paybook/sync-rest/blob/master/src/transactions.png =600x150) <-
 
 Nótese como estamos consultando las transacciones filtrando por id_credential esto quiere decir que únicamente queremos consultar las transacciones que se han sincronizado para la cuenta cuyas credenciales son aquellas cuyo id es id_credential. De esta misma manera podríamos filtrar por id_site para alguna institución, id_account para alguna cuenta, etc. Igual es importante mencionar que como la autenticación se está haciendo por token de sesión y éste está relacionado con un usuario específico (aquel que se utilizó al crear la sesión) automáticamente esta consulta regresa transacciones pertenecientes a ese usuario. 
 
@@ -557,7 +555,7 @@ En la respuesta de esta consulta veremos un arreglo de elementos (transacciones)
 
 Que contiene información de la transacción, ya sea bancaria o fiscal. Para terminar, es importante entender la estructura final de una cuenta. En el caso del escenario de Mateo, una vez que haya creado las credenciales y monitoreado el estado de la sincronización de cada una de las credenciales que creó, entonces el ya tendrá acceso a las transacciones de sus clientes y ya las tendrá en cierta manera clasificadas. Con esto el diagrama final que describe la estructura de la infromación en su cuenta de Paybook Sync sería el siguiente:
 
--> ![](./src/all_t.png =500x400) <-
+-> ![](https://github.com/Paybook/sync-rest/blob/master/src/all_t.png =500x400) <-
 
 No hay diferencia con el diagrama que expusimos previamente. Salvo que en éste ya se muestran las transacciones de cada una de las cuentas que Mateo ha sincronizado para cada uno de sus usuarios (recuadro rojo). Al final estas transacciones también estarán ligadas a tu API key. 
 
