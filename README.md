@@ -51,7 +51,7 @@ Lo único que tenemos que hacer para que la colección de Postman funcione es co
 
 En la parte superior derecha dar clic en un icono con forma de ojo y posteriormente en el botón "edit" justo a lado de Globals.
 
-<p align="center"><img src="https://github.com/Paybook/sync-rest/blob/master/src/gv1.png" width="200" height="200"></p>
+<p align="center"><img src="https://github.com/Paybook/sync-rest/blob/master/src/gv1.png" width="120" height="120"></p>
 
 Introduce el valor de tu API key de la siguiente manera:
 	- En el campo de "key" introduce el valor "sync_api_key"
@@ -65,7 +65,7 @@ Hecho esto hay que dar clic en "Save" y posteriormente cerrar la ventana.
 
 Para verificar que nuestra API key se haya agregado correctamente podemos ir nuevamente al icono con forma de ojo y dar clic. Debemos ver que el valor de nuestra API key ya se encuentra cargado como variable global de Postman como se muestra a continuación:
 
-<p align="center"><img src="https://github.com/Paybook/sync-rest/blob/master/src/gv3.png" width="200" height="200"></p>
+<p align="center"><img src="https://github.com/Paybook/sync-rest/blob/master/src/gv3.png" width="120" height="120"></p>
 
 Hecho esto, has configurado Postman para hacer uso de recurso que te hemos proporcionado. Disfruta el tutorial. 
 
@@ -73,7 +73,7 @@ Hecho esto, has configurado Postman para hacer uso de recurso que te hemos propo
 
 ***Importante:*** en Postman encontrarás que en algunas secciones habrá valores como este:
 
-<p align="center"><img src="https://github.com/Paybook/sync-rest/blob/master/src/gv4.png" width="200" height="200"></p>
+<p align="center"><img src="https://github.com/Paybook/sync-rest/blob/master/src/gv4.png" width="600" height="100"></p>
 
 Estos valores son preconfiguraciones que hemos hecho por ti. Estos valores se traducen a una URL tal cual, por ejemplo, https://sync.paybook.com/v1/users, por otro lado, o bien, algo como esto {{sync_api_key}} se traduce al API key que has configurado. De esta forma hemos configurado la mayoría de las llamadas y los parámetros que éstas requieren de tal manera que nos podamos enfocar en la implementación de Paybook Sync. Sin embargo, no pierdas de vista que al final del camino estamos consumiendo los endpoints del API y mandando los valores deacuerdo a los parámetros que nos solicita cada endpoint respectivamente.
 
