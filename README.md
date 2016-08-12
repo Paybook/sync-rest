@@ -59,7 +59,7 @@ Introduce el valor de tu API key de la siguiente manera:
 
 Tu pantalla se debería de ver algo así:
 
-<p align="center"><img src="https://github.com/Paybook/sync-rest/blob/master/src/gv2.png" width="200" height="200"></p>
+<p align="center"><img src="https://github.com/Paybook/sync-rest/blob/master/src/gv2.png" width="450" height="250"></p>
 
 Hecho esto hay que dar clic en "Save" y posteriormente cerrar la ventana. 
 
