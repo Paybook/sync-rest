@@ -20,7 +20,7 @@ Todo esto lo realizaremos consumiendo el [API REST de Paybook Sync](https://www.
 	- [Creación de cuentas y credenciales](#create_accounts_and_credentials)
 8. [Estatus de Sincronización](#sync_status)
 9. [Transacciones](#transactions)
-10. [Conclusion](#conclusion)
+10. [Conclusión](#conclusion)
 
 <div id='requirements'/>
 ## 1. Requerimientos:
@@ -43,7 +43,39 @@ Configurando [quickstart.json](https://github.com/Paybook/sync-rest/blob/master/
 4. Dar clic en "Choos Files" y seleccionar el archivo [quickstart.json](https://github.com/Paybook/sync-rest/blob/master/quickstart.json) que hemos descargado en el punto 1. 
 5. La colección se imporatará a la aplicación y la podremos visualizar del lado izquierdo con el nombre de "Sync Quickstart".
 
+Este archivo contiene 9 peticiones preconfiguradas para ti. Estas peticiones las iremos ejecutando a lo largo del tutorial.
+
+<p align="center"><img src="https://github.com/Paybook/sync-rest/blob/master/src/collection.png" width="200" height="200"></p>
+
+Lo único que tenemos que hacer para que la colección de Postman funcione es configurar nuestra API key de Paybook Sync como una variable global en Postman. Para esto:
+
+En la parte superior derecha dar clic en un icono con forma de ojo y posteriormente en el botón "edit" justo a lado de Globals.
+
+<p align="center"><img src="https://github.com/Paybook/sync-rest/blob/master/src/gv1.png" width="200" height="200"></p>
+
+Introduce el valor de tu API key de la siguiente manera:
+	- En el campo de "key" introduce el valor "sync_api_key"
+	- En el campo "value" introduce el valor de tu API key e.g. 7167a4a04f660f9131bafc949e8caode
+
+Tu pantalla se debería de ver algo así:
+
+<p align="center"><img src="https://github.com/Paybook/sync-rest/blob/master/src/gv2.png" width="200" height="200"></p>
+
+Hecho esto hay que dar clic en "Save" y posteriormente cerrar la ventana. 
+
+Para verificar que nuestra API key se haya agregado correctamente podemos ir nuevamente al icono con forma de ojo y dar clic. Debemos ver que el valor de nuestra API key ya se encuentra cargado como variable global de Postman como se muestra a continuación:
+
+<p align="center"><img src="https://github.com/Paybook/sync-rest/blob/master/src/gv3.png" width="200" height="200"></p>
+
+Hecho esto, has configurado Postman para hacer uso de recurso que te hemos proporcionado. Disfruta el tutorial. 
+
 ***Importante:*** en el punto de [Consulta de Usuarios](#postman_explanation) se hace una breve descripción de la interfaz y el manejo de Postman es recomendable consultarlo.
+
+***Importante:*** en Postman encontrarás que en algunas secciones habrá valores como este:
+
+<p align="center"><img src="https://github.com/Paybook/sync-rest/blob/master/src/gv4.png" width="200" height="200"></p>
+
+Estos valores son preconfiguraciones que hemos hecho por ti. Estos valores se traducen a una URL tal cual, por ejemplo, https://sync.paybook.com/v1/users, por otro lado, o bien, algo como esto {{sync_api_key}} se traduce al API key que has configurado. De esta forma hemos configurado la mayoría de las llamadas y los parámetros que éstas requieren de tal manera que nos podamos enfocar en la implementación de Paybook Sync. Sin embargo, no pierdas de vista que al final del camino estamos consumiendo los endpoints del API y mandando los valores deacuerdo a los parámetros que nos solicita cada endpoint respectivamente.
 
 
 <div id='api_key'/>
