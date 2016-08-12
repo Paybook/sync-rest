@@ -263,7 +263,7 @@ Usted puede analizar la respuesta con más detalle en Postman o en la interfaz d
 
 <div id='sites_testing_catalogues'/>
 
-###### Instituciones de Prueba
+#### Instituciones de Prueba
 
 A continuación se explicará brevemente los catálogos de prueba de Paybook Sync y cómo ***estos nos pueden ayudar a levantar nuestra aplicación sin la necesidad de tener credenciales reales de bancos o el SAT***. Esto puede ayudar a optimizar los tiempos de desarrollo. Leer este apartado es opcional, usted lo puede omitir e ir directamente a la siguiente [sección](#accounts_and_credentials).
 
