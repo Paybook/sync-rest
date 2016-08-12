@@ -554,7 +554,7 @@ Partícularmente si hemos sincronizado una institución de prueba Normal, podemo
 Una vez que hemos creado credenciales, monitoreado su estatus y verficado que la sincronización haya terminado exitósamente (código 200 en status), podemos consultar las transacciones de esa cuenta en específico. En Postman podemos seleccionar la petición "Get transactions" y ejecutarla. 
 
 <p align="center">
-  <img src="https://github.com/Paybook/sync-rest/blob/master/src/resp_status.png" width="600" height="150" />
+  <img src="https://github.com/Paybook/sync-rest/blob/master/src/transactions.png" width="600" height="150" />
 </p>
 
 Nótese como estamos consultando las transacciones filtrando por id_credential esto quiere decir que únicamente queremos consultar las transacciones que se han sincronizado para la cuenta cuyas credenciales son aquellas cuyo id es id_credential. De esta misma manera podríamos filtrar por id_site para alguna institución, id_account para alguna cuenta, etc. Igual es importante mencionar que como la autenticación se está haciendo por token de sesión y éste está relacionado con un usuario específico (aquel que se utilizó al crear la sesión) automáticamente esta consulta regresa transacciones pertenecientes a ese usuario. 
