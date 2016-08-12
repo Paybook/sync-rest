@@ -601,7 +601,7 @@ No hay diferencia con el diagrama que expusimos previamente. Salvo que en éste 
 
 Por último, a manera opcional, puedes borrar el usuario que hemos creado para efectos de seguir este tutorial. Para borrar el usuario selecciona en Postman la última petición "Deletes user":
 
-<p align="center"><img src="https://github.com/Paybook/sync-rest/blob/master/src/delete_user.png" width="600" height="300"></p>
+<p align="center"><img src="https://github.com/Paybook/sync-rest/blob/master/src/delete_user.png"></p>
 
 Esta acción borrará toda la información relacionada con este usuario dejando tu cuenta limpia, es decir, borrar un usuario de tu cuenta de Paybook Sync borrará todas sus credenciales, cuentas, transacciones y demás información relacionada con éste. 
 
