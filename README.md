@@ -71,7 +71,9 @@ Mateo puede ligar a su API key usuarios. Un usuario lo podemos visualizar como u
 
 A estos clientes Mateo les está desarrollando una aplicación y para esa aplicación el requiere conocer la información bancaria de sus clientes (es por eso que Mateo está haciendo uso de Paybook Sync). Para poder hacer uso de Paybook Sync, además de su API key, Mateo necesitará un usuario y, por medio de ese usuario, el podrá sincronizar las cuentas bancarias de sus clientes,
 
-<center><img src="https://github.com/Paybook/sync-rest/blob/master/src/ak_user.png" width="150" height="80" /></center>
+<p align="center">
+  <img src="https://github.com/Paybook/sync-rest/blob/master/src/ak_user.png" width="150" height="80" />
+</p
 
 Pero una mejor práctica es hacer una clasificación correcta de la información. La información de esas cuentas bancarias, si bien Mateo la está usando para las aplicaciones que está desarrollando, no le pertenece a él. Entonces lo correcto sería que Mateo creará un usuario por cada uno de sus clientes (esos usuarios desde luego estarían ligados al API Key de Mateo y con ello a su cuenta de Paybook Sync) pero la información de las instituciones que se sincronicen, además de estar ligada a la cuenta de Mateo, estaría clasificada por usuario, es decir, sabríamos quién es el dueño de esa información,
 
@@ -563,62 +565,3 @@ No hay diferencia con el diagrama que expusimos previamente. Salvo que en éste 
 ## 10. Conclusión
 
 A través de este tutorial esperamos que hayas podido implementar el API de Paybook Sync a través de los ejemplos que te hemos proporcionado y partiendo del entendimiento de como está constituida cada cuenta de Paybook Sync.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
-
-
-
