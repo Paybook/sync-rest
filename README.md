@@ -20,13 +20,14 @@ Todo esto lo realizaremos consumiendo el [API REST de Paybook Sync](https://www.
 	- [Creación de cuentas y credenciales](#create_accounts_and_credentials)
 8. [Estatus de Sincronización](#sync_status)
 9. [Transacciones](#transactions)
-10. [Conclusión](#conclusion)
+10. [Borrar Usuario](#delete_user)
 
 <div id='requirements'/>
 ## 1. Requerimientos:
 
 1. Recomendado: Aplicación [Postman](https://www.getpostman.com/)
 2. Recomednado: Conocimiento y manejo de [REST](http://asiermarques.com/2013/conceptos-sobre-apis-rest/).
+3. Un API key de Paybook Sync
 
 <div id='postman'/>
 ## 2. Postman
@@ -59,7 +60,7 @@ Introduce el valor de tu API key de la siguiente manera:
 
 Tu pantalla se debería de ver algo así:
 
-<p align="center"><img src="https://github.com/Paybook/sync-rest/blob/master/src/gv2.png" width="600" height="250"></p>
+<p align="center"><img src="https://github.com/Paybook/sync-rest/blob/master/src/gv2.png" width="200" height="200"></p>
 
 Hecho esto hay que dar clic en "Save" y posteriormente cerrar la ventana. 
 
@@ -67,15 +68,16 @@ Para verificar que nuestra API key se haya agregado correctamente podemos ir nue
 
 <p align="center"><img src="https://github.com/Paybook/sync-rest/blob/master/src/gv3.png" width="120" height="120"></p>
 
+Hecho esto, has configurado Postman para hacer uso de recurso que te hemos proporcionado. Disfruta el tutorial. 
+
 ***Importante:*** en el punto de [Consulta de Usuarios](#postman_explanation) se hace una breve descripción de la interfaz y el manejo de Postman es recomendable consultarlo.
 
 ***Importante:*** en Postman encontrarás que en algunas secciones habrá valores como este:
 
 <p align="center"><img src="https://github.com/Paybook/sync-rest/blob/master/src/gv4.png" width="700" height="90"></p>
 
-Estos valores son preconfiguraciones que hemos hecho por ti. Estos valores se pueden traducen a una URL, por ejemplo, https://sync.paybook.com/v1/users, o bien, algo como esto {{sync_api_key}} se traduce al API key que has configurado. De esta forma hemos configurado la mayoría de las llamadas y los parámetros que éstas requieren de tal manera que nos podamos enfocar en la implementación de Paybook Sync. Sin embargo, no pierdas de vista que al final del camino estamos consumiendo los endpoints del API y mandando los valores deacuerdo a los parámetros que nos solicita cada endpoint respectivamente.
+Estos valores son preconfiguraciones que hemos hecho por ti. Estos valores se traducen a una URL tal cual, por ejemplo, https://sync.paybook.com/v1/users, por otro lado, o bien, algo como esto {{sync_api_key}} se traduce al API key que has configurado. De esta forma hemos configurado la mayoría de las llamadas y los parámetros que éstas requieren de tal manera que nos podamos enfocar en la implementación de Paybook Sync. Sin embargo, no pierdas de vista que al final del camino estamos consumiendo los endpoints del API y mandando los valores deacuerdo a los parámetros que nos solicita cada endpoint respectivamente.
 
-Para mayor información puedes consultar la [documentación de Postman](https://www.getpostman.com/docs/) directamente.
 
 <div id='api_key'/>
 ## 3. API Key
@@ -594,7 +596,16 @@ Que contiene información de la transacción, ya sea bancaria o fiscal. Para ter
 
 No hay diferencia con el diagrama que expusimos previamente. Salvo que en éste ya se muestran las transacciones de cada una de las cuentas que Mateo ha sincronizado para cada uno de sus usuarios (recuadro rojo). Al final estas transacciones también estarán ligadas a tu API key. 
 
+<div id='delete_user'/>
+## 10. Borrar Usuario
+
+Por último, a manera opcional, puedes borrar el usuario que hemos creado para efectos de seguir este tutorial. Para borrar el usuario selecciona en Postman la última petición "Deletes user":
+
+<p align="center"><img src="https://github.com/Paybook/sync-rest/blob/master/src/delete_user.png" width="600" height="300"></p>
+
+Esta acción borrará toda la información relacionada con este usuario dejando tu cuenta limpia, es decir, borrar un usuario de tu cuenta de Paybook Sync borrará todas sus credenciales, cuentas, transacciones y demás información relacionada con éste. 
+
 <div id='conclusion'/>
-## 10. Conclusión
+## Conclusión
 
 A través de este tutorial esperamos que hayas podido implementar el API de Paybook Sync a través de los ejemplos que te hemos proporcionado y partiendo del entendimiento de como está constituida cada cuenta de Paybook Sync.
