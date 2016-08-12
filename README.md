@@ -73,7 +73,7 @@ Hecho esto, has configurado Postman para hacer uso de recurso que te hemos propo
 
 ***Importante:*** en Postman encontrarás que en algunas secciones habrá valores como este:
 
-<p align="center"><img src="https://github.com/Paybook/sync-rest/blob/master/src/gv4.png" width="600" height="100"></p>
+<p align="center"><img src="https://github.com/Paybook/sync-rest/blob/master/src/gv4.png" width="700" height="90"></p>
 
 Estos valores son preconfiguraciones que hemos hecho por ti. Estos valores se traducen a una URL tal cual, por ejemplo, https://sync.paybook.com/v1/users, por otro lado, o bien, algo como esto {{sync_api_key}} se traduce al API key que has configurado. De esta forma hemos configurado la mayoría de las llamadas y los parámetros que éstas requieren de tal manera que nos podamos enfocar en la implementación de Paybook Sync. Sin embargo, no pierdas de vista que al final del camino estamos consumiendo los endpoints del API y mandando los valores deacuerdo a los parámetros que nos solicita cada endpoint respectivamente.
 
