@@ -211,9 +211,9 @@ Una vez hecho esto si él consulta los usuarios ligados a su API key (como tambi
 <div id='sessions'/>
 ##5. Sesiones
 
-Otro de los conceptos que es importante que entendamos es el manejo de sesiones. Una forma de autenticarte con el API de Paybook es por medio de tu API key, haciendo uso de ella podrás hacer cualquier consulta o modificación de información de tu cuenta de Sync. Esto implica poder actualizar o consultar la información de cualquier institución de cualquier usuario que esté ligado a tu API key, y aunque esto tenga ciertos beneficios o bondades dependiendo de la lógica de tu aplicación puede ser inseguro en cierta medida. 
+Otro de los conceptos que es importante que entendamos es el manejo de sesiones. Una forma de autenticarte con el API de Paybook es por medio de tu API key, haciendo uso de ella podrás hacer cualquier consulta o modificación de información de tu cuenta de Sync. Esto implica poder actualizar o consultar la información de cualquier institución de cualquier usuario que esté ligado a tu API key. Aunque esto tenga ciertos beneficios o bondades dependiendo de la lógica de tu aplicación puede ser inseguro en cierta medida. 
 
-Otro modo de autenticarte con el API es por medio de una sesión. La diferencia particular es que una sesión va ligada directamente a un usuario y únicamente puede consultar o actualizar la información de éste (a diferencia del API key con la que puedes consultar todo). Para iniciar una sesión puedes seleccionar en Postman la petición "Inits Session":
+Otro modo de autenticarte con el API es por medio de una sesión. La diferencia particular es que una sesión va ligada directamente a un usuario y únicamente puede consultar o actualizar la información de éste (a diferencia del API key con la que puedes consultar todo). Para iniciar una sesión puedes seleccionar en Postman la petición *Inits Session*:
 
    <p align="center"><img src="https://github.com/Paybook/sync-rest/blob/master/src/inits_session.png" width="600" height="100"></p>
 
@@ -227,7 +227,9 @@ Dentro de los parámetros de la sesión está el token,
 token = 4cacd8126db956631cde03f234544bf5
 ````
 
-El valor de este token es el que podemos usar para autenticarnos con el API en vez de usar nuestro API key. A partir de aquí la autenticación que haremos en el tutorial será por medio del token y ***recuerda que éste únicamente podrá modificar o consultar la información del usuario con el que hayas creado la sesión***. 
+El valor de este token es el que podemos usar para autenticarnos con el API en vez de usar nuestro API key.
+
+***Importante:*** a partir de aquí la autenticación que haremos en el tutorial será por medio del token. ***Recuerda que éste únicamente podrá modificar o consultar la información del usuario con el que hayas creado la sesión***. 
 
 ***Importante:*** algunos métodos únicamente pueden autenticarse por medio del API key. Para más detalles consulta la [documentación general de Paybook Sync](https://www.paybook.com/sync/docs)
 
@@ -245,7 +247,7 @@ Continuando la situación de Mateo. Quedamos que Mateo tenía 3 clientes:
 - Una empresa: WalMart
 - Otra empresa: Starbucks Juriquilla
 
- Él ya creo un usuario para cada uno de sus clientes. Él sabe que, por ejemplo, respecto a José Ochoa necesita tener acceso a su información en el SAT (sus facturas tanto de ingresos como egresos), pero también necesita acceso partícularmente a las dos cuentas bancarias que maneja José Ochoa, Santander y Banamex, así como el cliente José Ochoa, WalMart y Starbucks tienen sus propias cuentas bancarias y registro fiscal, entonces la cuenta de Paybook Sync de Mateo podría tener la siguiente estructura:
+ Él ya creo un usuario para cada uno de sus clientes. Él sabe que, por ejemplo, respecto a José Ochoa necesita tener acceso a su información en el SAT (sus facturas tanto de ingresos como egresos), pero también necesita acceso partícularmente a las dos cuentas bancarias que maneja José Ochoa, Santander y Banamex. Así como el cliente José Ochoa, WalMart y Starbucks tienen sus propias cuentas bancarias y registro fiscal, entonces la cuenta de Paybook Sync de Mateo podría tener la siguiente estructura:
  
    <p align="center"><img src="https://github.com/Paybook/sync-rest/blob/master/src/inst.png" width="250" height="200"></p>
 
@@ -265,11 +267,11 @@ Entonces las instituciones que Mateo tendría que sincronizar para sus clientes 
 
    <p align="center"><img src="https://github.com/Paybook/sync-rest/blob/master/src/prod.png" width="500" height="300">
 
-Entonces, como se ve en el diagrama anterior, las instituciones que Mateo quiera sincronizar para sus usuarios las tiene que obtener del conjunto de catálogo de instituciones de Paybook Sync (catálogo predefinido). Para esto podemos hacer el siguiente llamado al API (en Postman "Get testing sites (institutions)"):
+Entonces, como se ve en el diagrama anterior, las instituciones que Mateo quiera sincronizar para sus usuarios las tiene que obtener del conjunto de catálogo de instituciones de Paybook Sync (catálogo predefinido). Para esto podemos hacer el siguiente llamado al API. Selecciona en Postman *Get testing sites (institutions)*:
 
    <p align="center"><img src="https://github.com/Paybook/sync-rest/blob/master/src/catalogues.png" width="600" height="100"></p>
 
-Es importante mencionar que en este caso se están consultando el conjunto de catálogos de prueba que Paybook Sync pone a nuestra disposición, es por eso que se está mandando el parámetro ***"is_test" en true***. Si se quiere consultar el conjunto de catálogos de producción únicamente hay que omitir enviar el parámetro ***"is_test"***. También note como en este caso la autentación la estamos haciendo por medio del ***token***.
+Es importante mencionar que en este caso se están consultando el conjunto de catálogos de prueba que Paybook Sync pone a nuestra disposición, es por eso que se está mandando el parámetro ***"is_test" en true***. Si se quiere consultar el conjunto de catálogos de producción únicamente hay que omitir enviar el parámetro ***"is_test"***. También note como en este caso la autenticación la estamos haciendo por medio del ***token***.
 
 La respuesta nos regresará un arreglo donde cada elemento es como el siguiente:
 
@@ -308,7 +310,7 @@ Usted puede analizar la respuesta con más detalle en Postman o en la interfaz d
 
 A continuación se explicará brevemente los catálogos de prueba de Paybook Sync y cómo ***estos nos pueden ayudar a levantar nuestra aplicación sin la necesidad de tener credenciales reales de bancos o el SAT***. Esto puede ayudar a optimizar los tiempos de desarrollo. Leer este apartado es opcional, usted lo puede omitir e ir directamente a la siguiente [sección](#accounts_and_credentials).
 
-***Importante:***no se preocupe a pesar de que usted haga uso de los catálogos de desarrollo el cambio a producción es sencillo por lo que esto no atrasará su desarrollo.
+***Importante:*** no se preocupe a pesar de que usted haga uso de los catálogos de desarrollo el cambio a producción es sencillo por lo que esto no atrasará su desarrollo.
 
 Para realizar pruebas es preferible usar los catálogos de prueba de Paybook Sync. Entre estos se encuentran:
 
@@ -322,13 +324,13 @@ Por lo que Mateo, con el objetivo de realizar pruebas o levantar el desarrollo d
 
    <p align="center"><img src="https://github.com/Paybook/sync-rest/blob/master/src/test.png" width="500" height="300"></p>
 
-Mediante este catálogo de prueba Mateo o tu podrán, por ejemplo, simular la sincronización del SAT, recordemos que esta sincronización exige un RFC -- un usuario -- y CIEC -- una contraseña -- por lo que sincronizando una institución de prueba Normal -- que solo pide usuario y contraseña -- se puede simular la sincronziación del SAT. Del mismo modo se puede hacer para simular la sincronización de Santander, Banamex, BBVA y Banorte -- o cualquier institución -- solo haciendo uso de la institición de prueba que se le parezca considerando únicamente la manera de autenticarse con ésta. Entonces Mateo podría tener algo así:
+Mediante este catálogo de prueba Mateo o tu podrán, por ejemplo, simular la sincronización del SAT, recordemos que esta sincronización exige un RFC -- un usuario -- y CIEC -- una contraseña -- por lo que sincronizando una institución de prueba Normal -- que solo pide usuario y contraseña -- se puede simular la sincronziación del SAT. Del mismo modo se puede hacer para simular la sincronización de Santander, Banamex, BBVA y Banorte -- o cualquier institución -- solo haciendo uso de la institición de prueba que se le parezca ***considerando únicamente la manera de autenticarse con ésta***. Entonces Mateo podría tener algo así:
 
 Para su cliente José Ochoa, Mateo puede
 
-- simular el SAT con una institución de prueba Normal
-- simular Santander con una institución de prueba Normal
-- simular Banamex (este pide token bancario) con una institución de prueba Token.
+- simular el ***SAT*** con una institución de prueba ***Normal***
+- simular ***Santander*** con una institución de prueba ***Normal***
+- simular ***Banamex*** (este pide token bancario) con una institución de prueba ***Token***.
 
 El mismo análisis Mateo lo tiene que hacer para las demás instituciones y usted para cada institución que quiera sincronizar. ***Recuerde: esto solo si desea usar el ambiente de pruebas de Paybook Sync.***
 
