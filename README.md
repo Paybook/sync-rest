@@ -601,7 +601,7 @@ No hay diferencia con el diagrama que expusimos previamente. Salvo que en éste 
 
 Por último, a manera opcional, puedes borrar el usuario que hemos creado para efectos de seguir este tutorial. Para borrar el usuario selecciona en Postman la última petición "Deletes user":
 
-<p align="center"><img src="https://github.com/Paybook/sync-rest/blob/master/src/delete_user.png"></p>
+<p align="center"><img src="https://github.com/Paybook/sync-rest/blob/master/src/delete_user.png" width="600" height="300"></p>
 
 Esta acción borrará toda la información relacionada con este usuario dejando tu cuenta limpia, es decir, borrar un usuario de tu cuenta de Paybook Sync borrará todas sus credenciales, cuentas, transacciones y demás información relacionada con éste. 
 
@@ -609,3 +609,17 @@ Esta acción borrará toda la información relacionada con este usuario dejando 
 ## Conclusión
 
 A través de este tutorial esperamos que hayas podido implementar el API de Paybook Sync a través de los ejemplos que te hemos proporcionado y partiendo del entendimiento de como está constituida cada cuenta de Paybook Sync.
+
+## Siguientes Pasos
+
+Una vez que hayas terminado este tutorial puedes consultar todos los recursos que tenemos para ti. Paybook Sync cuenta con:
+
+- Librerías en una gran variedad de tecnologías que te permitirán conectar tu aplicación con Paybook de una manera rápida y sencilla.  
+- Aplicaciones totalmente integras de código abierto que puedes descargar para iniciar tu aplicación tomando como base éstas (estos proyectos los encontrarás como lites). 
+- Documentación del API Rest. 
+- Tutoriales y documentación para ayudarte en la integración de Paybook Sync a tu aplicación.
+
+Todo esto lo puedes encontrar aquí mismo en [Paybook GitHub](https://github.com/Paybook)
+
+:)
+
