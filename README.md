@@ -68,7 +68,7 @@ Para verificar que nuestra API key se haya agregado correctamente podemos ir nue
 
 <p align="center"><img src="https://github.com/Paybook/sync-rest/blob/master/src/gv3.png" width="120" height="120"></p> 
 
-***Importante:*** en el punto de [Consulta de Usuarios](#postman_explanation) se hace una breve descripción de la interfaz y el manejo de Postman es recomendable consultarlo.
+***Importante:*** en el punto de [Consulta de Usuarios](#postman_explanation) se hace una breve descripción de la interfaz y el manejo de Postman es recomendable consultarlo en su momento.
 
 ***Importante:*** en Postman encontrarás que en algunas secciones habrá valores como este:
 
@@ -92,7 +92,7 @@ api_key = 7767a4a04f990e9231bafc949e8ca08a
 
 Este API key lo podemos visualizar como la contraseña o llave de acceso a los servicios de Paybook Sync. Únicamente a través de ella podremos consultar la información de las instituciones que sincronicemos así como hacer las configuraciones necesarias para que esto último pueda ser posible. 
 
-Si Mateo es un desarrallodor que está haciendo uso de Paybook Sync. El API Key será su llave de acceso (como desarrollador) a toda la información que Paybook Sync le proporciona.
+Si Mateo es un desarrallodor que está haciendo uso de Paybook Sync su API Key será la llave de acceso (como desarrollador) a toda la información que Paybook Sync le proporciona.
 
 <div id='users'/>
 
@@ -114,9 +114,9 @@ Pero una mejor práctica es hacer una clasificación correcta de la información
 
   <p align="center"><img src="https://github.com/Paybook/sync-rest/blob/master/src/ak_users.png" width="150" height="200"></p>
 
-Importante, estos usuarios que Mateo ha creado ***no tienen una cuenta de Paybook, ni tampoco una cuenta de Paybook Sync***, el único que tiene una cuenta en Paybook es Mateo. Él únicamente ha creado estos usuarios para clasificar la información de su cuenta de Sync de tal manera que el pueda hacer consultas y gestionar esa información fácilmente. 
+***Importante:*** estos usuarios que Mateo ha creado ***no tienen una cuenta de Paybook, ni tampoco una cuenta de Paybook Sync***, el único que tiene una cuenta en Paybook es Mateo. Él únicamente ha creado estos usuarios para clasificar la información de su cuenta de Sync de tal manera que él pueda hacer consultas y gestionar esa información fácilmente. Por lo tanto ***no debe confundir estos usuarios con su usuario de Paybook o de Sync***, a este último normalmente nos referiremos más como tu *Cuenta de Paybook* o tu *Cuenta de Sync*. 
 
-Una vez que hallamos entendido la diferencia entre nuestro API Key y nuestros usuarios podemos crear usuarios así como consultar los usuarios que están ligados a nuestra API Key.
+Una vez que hallamos entendido la diferencia entre nuestro API Key y nuestros usuarios podemos crear usuarios así como consultar los usuarios que están ligados a nuestra API key.
 
 <div id='get_users'/>
 #### Consulta de usuarios:
@@ -135,10 +135,10 @@ A continuación se describen brevemente los componentes básicos que estaremos a
 
 1. Aquí se selcciona el método/verbo de HTTP de la consulta.
 2. Aquí se selecciona la URL del API (en este caso siempre será la de Paybook Sync i.e. https://sync.paybook.com/v1/<endpoint>)
-3. Este botón "Params" es para abrir la interfaz para introducir los parámetros que queramos enviar en query string (ver punto 5)
+3. Este botón "Params" es para abrir la interfaz para introducir los parámetros que queramos enviar en [query string](https://en.wikipedia.org/wiki/Query_string) (ver punto 5)
 4. Este botón "Send" lo oprimiremos cada vez que queramos realizar la consulta
-5. En esta sección introducimos cada uno de los parámetros a enviar en query string.
-6. Body, en esta sección introducimos cada uno de los parámetros a enviar en el body (únicamente habilitado en peticiones con método/verbo POST).
+5. En esta sección introducimos cada uno de los parámetros a enviar en [query string](https://en.wikipedia.org/wiki/Query_string).
+6. Body, en esta sección introducimos cada uno de los parámetros a enviar en el [body](http://stackoverflow.com/questions/14551194/how-are-parameters-sent-in-an-http-post-request) (únicamente habilitado en peticiones con método/verbo POST).
 
 Entonces una vez que hemos entendido la estructura básica de Postman, veremos que para la consulta de usuarios la petición se configura de la siguiente manera:
 
@@ -146,9 +146,9 @@ Entonces una vez que hemos entendido la estructura básica de Postman, veremos q
 
 Esto indica que estamos:
 
-- Usando el método/verbo GET (ya que estamos consultando)
-- Consultando el endpoint de Paybook Sync /users (https://sync.paybook.com/v1/users)
-- Mandando como parámetro en query string nuestro api_key.
+- Usando el método/verbo ***GET*** (ya que estamos consultando)
+- Consultando el endpoint de Paybook Sync ***/users*** (https://sync.paybook.com/v1/users)
+- Mandando como ***parámetro en [query string](https://en.wikipedia.org/wiki/Query_string) nuestro api_key***.
 
 ***Importante:*** si usted no está haciendo uso de Postman es importante identificar estos valores para que pueda hacer las peticiones con la herramienta de su elección.
 
@@ -156,13 +156,7 @@ Al momento de dar clic en "Send" se hace la petición al API. Y en la parte infe
 
    <p align="center"><img src="https://github.com/Paybook/sync-rest/blob/master/src/resp1.png" width="500" height="300"></p>
 
-Es importante mencionar que para ver está respuesta tendremos que estar situados en la pestaña "Body" (recuadro verde). Si nuestra API key es inválida, o bien, no la enviamos como parámetro o no está vigente, en resumen, si la autenticación del desarrollador con el API no es correcta, entonces no obtendremos la lista de usuarios y obtendremos una respuesta de error como la siguiente:
-
-   <p align="center"><img src="https://github.com/Paybook/sync-rest/blob/master/src/error.png" width="600" height="200"></p>
-
-Cualquier petición que hagamos al API de Sync (en cualquier endpoint, con cualquier método o verbo, etc) si la autenticación no es correcta enviará un error como este.
-
-Ojo, si en un principio no has creado usuarios la respuesta te debe regresar un arreglo vacio, puesto que todavía no hay usuarios ligados a tu API key, es decir,
+Es importante mencionar que para ver está respuesta tendremos que estar situados en la pestaña "Body" (recuadro verde). Ojo, si en un principio no has creado usuarios la respuesta te debe regresar un arreglo vacio, puesto que todavía no hay usuarios ligados a tu API key, es decir,
 
 ```
 {
@@ -173,10 +167,24 @@ Ojo, si en un principio no has creado usuarios la respuesta te debe regresar un 
 }
 ```
 
+###### Errores del API
+
+El API cuenta con un manejador de errores que te regresará en caso de encontrar algún detalle con la petición que estás realizando, por ejemplo:
+
+- Si nuestra API key es inválida
+- Si no hemos enviado el API key en los parámetros
+- Si el API key que hemos enviado ya no está vigente
+
+En resumen, si la autenticación del desarrollador con el API es incorrecta, entonces no obtendremos, por ejemplo, la lista de usuarios que estábamos consultando y obtendremos una respuesta de error como la siguiente:
+
+   <p align="center"><img src="https://github.com/Paybook/sync-rest/blob/master/src/error.png" width="600" height="200"></p>
+
+Cualquier petición que hagamos al API de Sync (en cualquier endpoint, con cualquier método o verbo, etc) si la autenticación es incorrecta enviará un error como éste.
+
 <div id='create_users'/>
 #### Creación de usuarios:
 
-Para crear un usuario podemos seleccionar en la colección de Postman la segunda petición "Creates a new user":
+Para crear un usuario podemos seleccionar en la colección de Postman la segunda petición *Creates a new user*:
 
    <p align="center"><img src="https://github.com/Paybook/sync-rest/blob/master/src/creates_user.png" width="600" height="200"></p>
 
@@ -184,9 +192,9 @@ Aquí, a diferencia de la consulta de usuarios, estamos enviando los parámetros
 
 Esto indica que estamos:
 
-- Usando el método/verbo POST (ya que estamos creando)
-- Consultando el endpoint de Paybook Sync /users (https://sync.paybook.com/v1/users)
-- Estamos mandando como parámetro en el body nuestro api_key así como el nombre del usuario que vamos a crear.
+- Usando el método/verbo ***POST*** (ya que estamos creando)
+- Consultando el endpoint de Paybook Sync ***/users*** (https://sync.paybook.com/v1/users)
+- Estamos mandando como ***parámetro en el [body](http://stackoverflow.com/questions/14551194/how-are-parameters-sent-in-an-http-post-request) nuestro api_key así como el nombre del usuario*** que vamos a crear.
 
 Y podremos ver una respuesta como la siguiente:
 
@@ -196,7 +204,7 @@ Entonces, sabiendo esto, lo que Mateo tendría que hacer es crear 3 usuarios, un
 
    <p align="center"><img src="https://github.com/Paybook/sync-rest/blob/master/src/ak_users.png" width="150" height="200"></p>
 
-Una vez hecho esto si el consulta los usuarios ligados a su API key (como también se hizo anteriormente) obtendría un arreglo con sus tres usuarios. 
+Una vez hecho esto si él consulta los usuarios ligados a su API key (como también se hizo anteriormente) obtendría un arreglo con sus tres usuarios. 
 
 ¿Por qué no intentas tu crear algunos usarios con tu API key así como consultar la lista de usuarios ligados a ésta? Una vez que domines esto podremos continuar con los siguientes puntos del tutorial.
 
