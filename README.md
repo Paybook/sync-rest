@@ -519,7 +519,7 @@ Pero una vez que hemos creado unas credenciales tenemos que esperar a que Payboo
 - Las credenciales, el token bancario, y demás fueron válidos y la cuenta se está sincronizando.
 - La cuenta ha terminado de sincronizarse.
 
-Toda está información la podemos obtener a través de los datos que el API nos regresó al momento de crear las credenciales. En el ejemplo anterior vimos que el resultado de esto era, por ejemplo:
+Toda esta información la podemos obtener a través de los datos que el API nos regresó al momento de crear las credenciales. En el ejemplo anterior vimos que el resultado de esto era, por ejemplo:
 
 ```
 {
@@ -538,7 +538,7 @@ Toda está información la podemos obtener a través de los datos que el API nos
 
 En este caso únicamente explicaremos la propiedad "status". Las demás están fuera del alcance de este tutorial, sin embargo, puedes consultar la documentación del API o bien otros tutoriales para checar su funcionamiento. 
 
-La propiedad ***"status"*** es una URL específica que Paybook Sync nos crea para qué, a través de ella, podamos consultar precisamente eso, el estatus de la sincronización de las credenciales que hemos creado. En Postman podemos seleccionar la petición "Check credentials sync status"
+La propiedad ***"status"*** es una URL específica que Paybook Sync nos crea para qué, a través de ella, podamos consultar precisamente eso, el estatus de la sincronización de las credenciales que hemos creado. En Postman podemos seleccionar la petición *Check credentials sync status*
 
    <p align="center"><img src="https://github.com/Paybook/sync-rest/blob/master/src/status.png" width="600" height="150"></p>
 
@@ -546,14 +546,14 @@ Cuya respuesta es una serie de códigos (códigos de estatus de sincronización)
 
    <p align="center"><img src="https://github.com/Paybook/sync-rest/blob/master/src/resp_status.png" width="600" height="250"></p>
 
-Los diferentes estatus y su significado se pueden consultar en la [documentación general de Paybook Sync](https://www.paybook.com/sync/docs) y es trabajo del desarrollador programar su propia rutina dependiendo el tipo de estatus que obtenga, es decir, si el estatus es 401 que significa que las credenciales introducidas son iválidas, es trabajo del desarrollador programar una rutina que vuelva a pedir las credenciales y volver a consumir el endpoint de crear credenciales está vez con los valores adecuados. 
+Los diferentes estatus y su significado se pueden consultar en la [documentación general de Paybook Sync](https://www.paybook.com/sync/docs#api-Quickstart-Quickstart) y es trabajo del desarrollador programar su propia rutina dependiendo el tipo de estatus que obtenga, es decir, si el estatus es 401 que significa que las credenciales introducidas son iválidas, es trabajo del desarrollador programar una rutina que vuelva a pedir las credenciales y volver a consumir el endpoint de crear credenciales esta vez con los valores adecuados. 
 
 Partícularmente si hemos sincronizado una institución de prueba Normal, podemos esperar por el estatus 200 que significa que la sincronización ha terminado, por tanto, ya hay transacciones de esa cuenta en específico que podemos consultar. Esto lo analizaremos en el siguiente apartado.
 
 <div id='transactions'/>
 ## 9. Consulta de Transacciones
 
-Una vez que hemos creado credenciales, monitoreado su estatus y verficado que la sincronización haya terminado exitósamente (código 200 en status), podemos consultar las transacciones de esa cuenta en específico. En Postman podemos seleccionar la petición "Get transactions" y ejecutarla. 
+Una vez que hemos creado credenciales, monitoreado su estatus y verficado que la sincronización haya terminado exitósamente (código 200 en status), podemos consultar las transacciones de esa cuenta en específico. En Postman podemos seleccionar la petición *Get transactions* y ejecutarla. 
 
    <p align="center"><img src="https://github.com/Paybook/sync-rest/blob/master/src/transactions.png" width="600" height="150"></p>
 
@@ -600,7 +600,7 @@ En la respuesta de esta consulta veremos un arreglo de elementos (transacciones)
     }
 ```
 
-Que contiene información de la transacción, ya sea bancaria o fiscal. Para terminar, es importante entender la estructura final de una cuenta. En el caso del escenario de Mateo, una vez que haya creado las credenciales y monitoreado el estado de la sincronización de cada una de las credenciales que creó, entonces el ya tendrá acceso a las transacciones de sus clientes y ya las tendrá en cierta manera clasificadas. Con esto el diagrama final que describe la estructura de la infromación en su cuenta de Paybook Sync sería el siguiente:
+Que contiene información de la transacción, ya sea bancaria o fiscal. Para terminar, es importante entender la estructura final de una cuenta. En el caso del escenario de Mateo, una vez que haya creado las credenciales y monitoreado el estado de la sincronización de cada una de las credenciales que creó, entonces el ya tendrá acceso a las transacciones de sus clientes. Con esto el diagrama final que describe la estructura de la infromación en su cuenta de Paybook Sync sería el siguiente:
 
    <p align="center"><img src="https://github.com/Paybook/sync-rest/blob/master/src/all_t.png" width="500" height="400"></p>
 
@@ -609,11 +609,11 @@ No hay diferencia con el diagrama que expusimos previamente. Salvo que en éste 
 <div id='delete_user'/>
 ## 10. Borrar Usuario
 
-Por último, a manera opcional, puedes borrar el usuario que hemos creado para efectos de seguir este tutorial. Para borrar el usuario selecciona en Postman la última petición "Deletes user":
+Por último, a manera opcional, puedes borrar el usuario que hemos creado para efectos de seguir este tutorial. Para borrar el usuario selecciona en Postman la última petición *Deletes user*:
 
-<p align="center"><img src="https://github.com/Paybook/sync-rest/blob/master/src/delete_user.png" width="600" height="300"></p>
+<p align="center"><img src="https://github.com/Paybook/sync-rest/blob/master/src/delete_user.png" width="600" height="150"></p>
 
-Esta acción borrará toda la información relacionada con este usuario dejando tu cuenta limpia, es decir, borrar un usuario de tu cuenta de Paybook Sync borrará todas sus credenciales, cuentas, transacciones y demás información relacionada con éste. 
+Esta acción borrará toda la información relacionada con este usuario dejando tu cuenta limpia, es decir, ***borrar un usuario de tu cuenta de Paybook Sync borrará todas sus credenciales, cuentas, transacciones y demás información relacionada con éste***. 
 
 <div id='conclusion'/>
 ## Conclusión
