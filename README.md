@@ -482,7 +482,7 @@ La misma lógica se tiene que realizar para sincronizar cualquier institución. 
 ***Importante:*** Lo único que distingue si estamos sincronizando una institución de prueba o no, es de donde obtuvimos el valor id_site, si fue del catálogo de instituciones de prueba o del catálogo de instituciones reales, además de esto no hay ninguna diferencia.  
 
 
-Entonces una vez que sabemos todo esto para crear unas credenciales podemos hacer lo siguiente (en Postman "Create a new credentials"):
+Entonces una vez que sabemos todo esto para crear unas credenciales podemos hacer lo siguiente (en Postman *Create a new credentials*):
 
    <p align="center"><img src="https://github.com/Paybook/sync-rest/blob/master/src/credentials.png" width="600" height="150"></p>
 
@@ -492,7 +492,7 @@ La creación de credenciales nos dará una respuesta como la siguiente:
 
 Los distintos valores que vemos en la respuesta y como estos se utilizan los analizaremos en las siguientes secciones.
 
-Siguiendo con el escenario de Mateo. El ya tiene sus usuarios creados, ahora el tendrá que crear unas ***CREDENECIALES*** por cada ***CUENTA*** de cada ***INSTITUCIÓN O SITIO*** de cada ***USUARIO*** que quiera sincronizar. Con los requerimientos nuevos que agregó su cliente José Ochoa, y suponiendo que Walmart únicamente tiene una cuenta en Banamex y una American Express y que Starbucks Juriquilla únicamente tiene una cuenta en Banamex, BBVA y Banorte el escenario de la cuenta de Paybook Sync de Mateo sería el siguiente:
+Siguiendo con el escenario de Mateo. Él ya tiene sus usuarios creados, ahora el tendrá que crear unas ***CREDENECIALES*** por cada ***CUENTA*** de cada ***INSTITUCIÓN O SITIO*** de cada ***USUARIO*** que quiera sincronizar. Con los requerimientos nuevos que agregó su cliente José Ochoa, y suponiendo que Walmart únicamente tiene una cuenta en Banamex y una American Express y que Starbucks Juriquilla únicamente tiene una cuenta en Banamex, BBVA y Banorte el escenario de la cuenta de Paybook Sync de Mateo sería el siguiente:
 
    <p align="center"><img src="https://github.com/Paybook/sync-rest/blob/master/src/all.png" width="500" height="400"></p>
 
@@ -503,7 +503,7 @@ En resumen todo quedará ligado al API key de Mateo pero de una manera organizad
 3. Cada usuario tiene sus propias cuentas que a su vez están relacionadas con alguna institución o sitio. (recuadros azul, amarillo). 
 4. Cada cuenta tiene unas credenciales asociadas (recuadros amarillo y morado).
 
-Nótese como en esta estructura no están contenidos los catálogos que vimos anteriormente. Esto es por que los catálogs de instituciones no le pertenecen al usuario, estos catálogos son globales y son catálogos que ofrece Paybook Sync y no están ligados a ninguna cuenta de Paybook Sync en específico, a diferencia de los usuarios, cuentas y credenciales que si están ligados a un API key y por lo tanto a una cuenta de Paybook Sync, en este caso, la de Mateo. 
+Nótese como en esta estructura no están contenidos los catálogos que vimos anteriormente. Esto es por que los catálogos de instituciones no le pertenecen al usuario, estos catálogos son globales y son catálogos que ofrece Paybook Sync y no están ligados a ninguna cuenta de Paybook Sync en específico, a diferencia de los usuarios, cuentas y credenciales que si están ligados a un API key y por lo tanto a una cuenta de Paybook Sync, en este caso, la de Mateo. 
 
 Más adelante veremos que las transacciones sincronizadas de alguna institución las podrás filtrar por usuario, por sitio o institución, por cuenta o credencial y por cualquier combinación de éstas, además de poder agregar filtros de temporalidad.
 
