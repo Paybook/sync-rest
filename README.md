@@ -247,7 +247,7 @@ Continuando la situación de Mateo. Quedamos que Mateo tenía 3 clientes:
 - Una empresa: WalMart
 - Otra empresa: Starbucks Juriquilla
 
- Él ya creo un usuario para cada uno de sus clientes. Él sabe que, por ejemplo, respecto a José Ochoa necesita tener acceso a su información en el SAT (sus facturas tanto de ingresos como egresos), pero también necesita acceso partícularmente a las dos cuentas bancarias que maneja José Ochoa, Santander y Banamex. Así como el cliente José Ochoa, WalMart y Starbucks tienen sus propias cuentas bancarias y registro fiscal, entonces la cuenta de Paybook Sync de Mateo podría tener la siguiente estructura:
+Él ya creo un usuario para cada uno de sus clientes. Él sabe que, por ejemplo, respecto a José Ochoa necesita tener acceso a su información en el SAT (sus facturas tanto de ingresos como egresos), pero también necesita acceso partícularmente a las dos cuentas bancarias que maneja José Ochoa, Santander y Banamex. Así como el cliente José Ochoa, WalMart y Starbucks tienen sus propias cuentas bancarias y registro fiscal, entonces la cuenta de Paybook Sync de Mateo podría tener la siguiente estructura:
  
    <p align="center"><img src="https://github.com/Paybook/sync-rest/blob/master/src/inst.png" width="250" height="200"></p>
 
