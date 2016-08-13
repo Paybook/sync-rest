@@ -26,7 +26,7 @@ Todo esto lo realizaremos consumiendo el [API REST de Paybook Sync](https://www.
 ## 1. Requerimientos:
 
 1. Recomendado: Aplicación [Postman](https://www.getpostman.com/)
-2. Recomednado: Conocimiento y manejo de [REST](http://asiermarques.com/2013/conceptos-sobre-apis-rest/).
+2. Recomendado: Conocimiento y manejo de [REST](http://asiermarques.com/2013/conceptos-sobre-apis-rest/).
 3. Un API key de Paybook Sync
 
 <div id='postman'/>
