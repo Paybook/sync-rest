@@ -616,7 +616,7 @@ Una vez que hayas terminado este tutorial puedes consultar todos los recursos qu
 
 - Librerías en una gran variedad de tecnologías que te permitirán conectar tu aplicación con Paybook de una manera rápida y sencilla.  
 - Aplicaciones totalmente integras de código abierto que puedes descargar para iniciar tu aplicación tomando como base éstas (estos proyectos los encontrarás como lites). 
-- Documentación del API Rest. 
+- [Documentación del API Rest](https://www.paybook.com/sync/docs)
 - Tutoriales y documentación para ayudarte en la integración de Paybook Sync a tu aplicación.
 
 Todo esto lo puedes encontrar aquí mismo en [Paybook GitHub](https://github.com/Paybook)
