@@ -60,15 +60,13 @@ Introduce el valor de tu API key de la siguiente manera:
 
 Tu pantalla se debería de ver algo así:
 
-<p align="center"><img src="https://github.com/Paybook/sync-rest/blob/master/src/gv2.png" width="200" height="200"></p>
+<p align="center"><img src="https://github.com/Paybook/sync-rest/blob/master/src/gv2.png" width="600" height="200"></p>
 
 Hecho esto hay que dar clic en "Save" y posteriormente cerrar la ventana. 
 
 Para verificar que nuestra API key se haya agregado correctamente podemos ir nuevamente al icono con forma de ojo y dar clic. Debemos ver que el valor de nuestra API key ya se encuentra cargado como variable global de Postman como se muestra a continuación:
 
-<p align="center"><img src="https://github.com/Paybook/sync-rest/blob/master/src/gv3.png" width="120" height="120"></p>
-
-Hecho esto, has configurado Postman para hacer uso de recurso que te hemos proporcionado. Disfruta el tutorial. 
+<p align="center"><img src="https://github.com/Paybook/sync-rest/blob/master/src/gv3.png" width="120" height="120"></p> 
 
 ***Importante:*** en el punto de [Consulta de Usuarios](#postman_explanation) se hace una breve descripción de la interfaz y el manejo de Postman es recomendable consultarlo.
 
@@ -76,7 +74,9 @@ Hecho esto, has configurado Postman para hacer uso de recurso que te hemos propo
 
 <p align="center"><img src="https://github.com/Paybook/sync-rest/blob/master/src/gv4.png" width="700" height="90"></p>
 
-Estos valores son preconfiguraciones que hemos hecho por ti. Estos valores se traducen a una URL tal cual, por ejemplo, https://sync.paybook.com/v1/users, por otro lado, o bien, algo como esto {{sync_api_key}} se traduce al API key que has configurado. De esta forma hemos configurado la mayoría de las llamadas y los parámetros que éstas requieren de tal manera que nos podamos enfocar en la implementación de Paybook Sync. Sin embargo, no pierdas de vista que al final del camino estamos consumiendo los endpoints del API y mandando los valores deacuerdo a los parámetros que nos solicita cada endpoint respectivamente.
+Estos valores son preconfiguraciones que hemos hecho por ti. Estos valores se pueden traducir a una URL, por ejemplo, https://sync.paybook.com/v1/users, o bien, algo como esto {{sync_api_key}} se traduce al API key que has configurado. De esta forma hemos configurado la mayoría de las llamadas y los parámetros que éstas requieren de tal manera que nos podamos enfocar en la implementación de Paybook Sync. Sin embargo, no pierdas de vista que al final del camino estamos consumiendo los endpoints del API y mandando los valores deacuerdo a los parámetros que nos solicita cada endpoint respectivamente.
+
+Para mayor información puedes consultar la [Documetnación de Postman](https://www.getpostman.com/docs/) directamente.
 
 
 <div id='api_key'/>
