@@ -1,6 +1,6 @@
 # Sync REST
 
-A lo largo de este tutorial explicaremos como está estructurada una cuenta Paybook Sync. A su vez se explicará, haciendo uso de ejemplos, como podemos configurar una cuenta, organizar la información de las instituciones que sincronicemos a través de Paybook Sync además de como consultar esta información.
+A lo largo de este tutorial explicaremos como está estructurada una cuenta Paybook Sync. A su vez se explicará, haciendo uso de ejemplos, cómo podemos configurar una cuenta, organizar la información de las instituciones que sincronicemos a través de Paybook Sync además de como consultar esta información.
 Todo esto lo realizaremos consumiendo el [API REST de Paybook Sync](https://www.paybook.com/sync/docs) de manera directa.
 
 ## Contenido
@@ -41,7 +41,7 @@ Configurando [quickstart.json](https://github.com/Paybook/sync-rest/blob/master/
 1. Descarga el archivo [quickstart.json](https://github.com/Paybook/sync-rest/blob/master/quickstart.json)
 2. Abrir aplicación Postman en tu computadora
 3. En la parte superior izquierda dar clic en "Import" y posteriormente en la pestaña "Import File"
-4. Dar clic en "Choos Files" y seleccionar el archivo [quickstart.json](https://github.com/Paybook/sync-rest/blob/master/quickstart.json) que hemos descargado en el punto 1. 
+4. Dar clic en "Choose Files" y seleccionar el archivo [quickstart.json](https://github.com/Paybook/sync-rest/blob/master/quickstart.json) que hemos descargado en el punto 1. 
 5. La colección se imporatará a la aplicación y la podremos visualizar del lado izquierdo con el nombre de "Sync Quickstart".
 
 Este archivo contiene 9 peticiones preconfiguradas para ti. Estas peticiones las iremos ejecutando a lo largo del tutorial.
