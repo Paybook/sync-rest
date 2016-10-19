@@ -616,7 +616,13 @@ No hay diferencia con el diagrama que expusimos previamente. Salvo que en éste 
 
 ## 10. Facturación
 
-A través del servicio REST Sync es poible realizar el timbrado de [CFDI's](http://www.sat.gob.mx/informacion_fiscal/factura_electronica/Paginas/requisitos_factura_cfdi.aspx). Este servicio permite simplificar el proceso de generación, validación de facturas,  timbrado y cancelación de las mismas.
+A través del servicio REST Sync es poible realizar el timbrado de [CFDI's](http://www.sat.gob.mx/informacion_fiscal/factura_electronica/Paginas/requisitos_factura_cfdi.aspx). Este servicio permite:
+
+1. Simplificar el proceso de timbrado de facturas
+2. Toda factura expedida a través de Sync será validada
+3. Cancelación de facturas timbradas
+4. Consulta de facturas timbradas
+5. El usuario podrá elegir con qué proveedor quiere timbrar facturas. 
 
 <div id='taxpayers'/>
 
@@ -624,13 +630,19 @@ A través del servicio REST Sync es poible realizar el timbrado de [CFDI's](http
 
 ### Agregar Contribuyentes
 
-El primer paso para generar un CFDI es agregar un contribuyente al sistema, cada usuario de Sync puede tener ligados múltiples contribuyentes. Para agregar un nuevo contribuyente, se requiere el RFC del contribuyente, así como las creenciales [CSD](http://www.sat.gob.mx/informacion_fiscal/tramites/comprobantes_fiscales/Paginas/ficha_108_cff.aspx) con el password, y los archivos cer y key los cuales deben ser codificados en base64 para ser enviados en la petición. 
+El primer paso para generar un CFDI es agregar un contribuyente al sistema, cada usuario de Sync puede tener ligados múltiples contribuyentes. Para agregar un nuevo contribuyente se requiere:
+
+- RFC del contribuyente.
+- Credenciales [CSD](http://www.sat.gob.mx/informacion_fiscal/tramites/comprobantes_fiscales/Paginas/ficha_108_cff.aspx). Estos son 2 archivos en formato cer y key los cuales deben ser codificados en base64 al ser enviados en la petición.
+- Contraseña de los CSDs. 
+- API key de Sync.
+- Usuario de Sync -- id_user. Este sería el id del usuario al cual se asociará el contribuyente.
+
 ```
 POST invoicing/mx/taxpayers
 ```
 <p align="center"><img src="https://github.com/Paybook/sync-rest/blob/master/src/taxpayers.png" width="750" height="400"></p>
 
-Como puede observarse en la imagen, además de los datos previamente mencionados, es necessario agregar el api_key de paybook y el id_user al cual se asociará el contribuyente.
 Para este tutorial de postman, se incluyen [credenciales que el SAT publica](http://www.sat.gob.mx/informacion_fiscal/factura_electronica/Paginas/certificado_sello_digital.aspx) para poder realizar pruebas. 
 
 
@@ -644,12 +656,12 @@ PUT invoicing/mx/taxpayers
 
 ### Traer listado de contribuyentes
 
-Una vez que se ha agregado un contribuyente y en caso de que sus credenciales expiren o cambien, se pueden actualizar a través del siguiente endpoint con los mismos parámetros que al agregarlo.
+También es posible obtener el listado de contribuyentes que se han agregado:
 
 ```
 GET invoicing/mx/taxpayers
 ```
-En la respuesta es un arreglo de objetos el cual contiene el RFC del contribuyente, además del rango de fechas en UNIX timestamp durante el cual es válido su certificado.
+La respuesta es un arreglo de objetos. Cada uno de estos contiene el RFC del contribuyente, además del rango de fechas en UNIX timestamp que indican el periodo de vigencia de su certificado.
 
 <p align="center"><img src="https://github.com/Paybook/sync-rest/blob/master/src/taxpayersGet.png" width="750" height="180"></p>
 
@@ -659,21 +671,25 @@ En la respuesta es un arreglo de objetos el cual contiene el RFC del contribuyen
 
 ### Timbrar factura
 
-Para timbrar una factura a través del servico de Paybook, se ha generado un [esquema basado en una estructura JSON](cfdi_structure.json) con el fin de simplificar el proceso de timbrado, como usuario usted solo tiene que llenar los datos requeridos en el JSON y el sistema se encargará de construir el XML, generar los sellos de timbrado, validarlo y enviarlo al SAT a través de los proveedores disponibles. Esto se realiza usando siguinte endpoint.
+Para timbrar una factura a través del servico de Paybook, se ha generado un [esquema basado en una estructura JSON](cfdi_structure.json) con el fin de simplificar el proceso de timbrado, como usuario usted solo tiene que llenar los datos requeridos en el JSON y el sistema se encargará de:
+
+- Construir el XML
+- Generar los sellos de timbrado
+- Validar el XML
+- Enviarlos al SAT a través de los proveedores disponibles (PACs)
+
+Esto se realiza consumiendo el siguinte endpoint.
 
 ```
 POST invoicing/mx/invoices
 ```
 
-
-
-
-En el ejemplo de postman se incluye una factura timbrada con el proveedor de sandbox "acme". Como se observa en la siguiente imagen en la respuesta de la llamada, se obtiene el XML de la factura ya timbrada, el UUID de esta, además de un campo llamado 'warnings', en el cual es un arreglo que muestra advertencias sobre posibles datos erroneos al generar la factura.
+En el ejemplo de postman se incluye una factura timbrada con el proveedor de sandbox "acme". Como se observa en la siguiente imagen en la respuesta de la llamada, se obtiene el XML de la factura ya timbrada, el UUID de ésta, además de un campo llamado 'warnings', este último es un arreglo que muestra advertencias sobre posibles datos erróneos al generar la factura.
 
 <p align="center"><img src="https://github.com/Paybook/sync-rest/blob/master/src/invoicesPost.png" width="750" height="400"></p>
 
 ### Conversión a base64 
-Para realizar la conversión de los archivos a base64, se puede realizar en algún conversor en linea por ejemplo [este](http://base64-encoding.online-domain-tools.com).
+Para realizar la conversión de los archivos a base64, se puede hacer uso de algún conversor en línea por ejemplo [este](http://base64-encoding.online-domain-tools.com).
 
 También se puede hacer desde la consola de comandos
 
@@ -700,7 +716,7 @@ Para traer las facturas que fueron timbradas previamente se usa el siguiente end
 ```
 GET invoicing/mx/invoices
 ```
-Algunos parámetros que se pueden enviar para realizar el filtrado de las facturas que se traeran son los siguientes:
+Algunos parámetros que se pueden enviar para realizar el filtrado de las facturas que se traerán son los siguientes:
 ```
 {
     api_key: la api key de paybook,
@@ -716,12 +732,12 @@ Algunos parámetros que se pueden enviar para realizar el filtrado de las factur
 ```
 
 ### Cancelar factura
-Para realizar la cancelación de una factura lo unico que se require es el uuid. El proceso se realiza usando el endpoint:
+Para realizar la cancelación de una factura lo único que se require es el UUID. El proceso se realiza usando el endpoint:
 ```
 PUT invoicing/mx/invoices/{{uuid}}/cancel
 ```
 
-La factura cancelada seguira almacenada en el sistema pero con el estado de cancelación. En la sigueinte imagen se observa que en la respuesta exitosa de cancelación contiene el parámetro 'success' igual a 'true', además del acuse de cancelación en formato XML, el cual proporcionan los proveedores de servicio de timbrado.
+La factura cancelada seguirá almacenada en el sistema pero con el estado de cancelación. En la sigueinte imagen se observa que en la respuesta exitosa de cancelación contiene el parámetro 'success' igual a 'true', además del acuse de cancelación en formato XML, el cual proporcionan los proveedores de servicio de timbrado.
 
 <p align="center"><img src="https://github.com/Paybook/sync-rest/blob/master/src/invoicesPutCancel.png" width="750" height="170"></p>
 
@@ -731,7 +747,7 @@ La factura cancelada seguira almacenada en el sistema pero con el estado de canc
 
 ### Listado de proveedores de facturación.
 
-Como se mencionó anteriormente, Paybook puede realizar el proceso de timbrado a través de múltiples proveedores. Usando el siguiente endpoint se obtiene una lista de los proveedores dados de alta en el sistema, si se desea timbrar con un proveedor en especifico,  se debe agregar el parámetro "id_provider" en la petición POST de invoices, el valor de este puede ser el nombre o el id que se proporcionan en la lista. 
+Como se mencionó anteriormente, Paybook puede realizar el proceso de timbrado a través de múltiples proveedores. Usando el siguiente endpoint se obtiene una lista de los proveedores dados de alta en el sistema, si se desea timbrar con un proveedor en especifico,  se debe agregar el parámetro "id_provider" en la petición POST de invoices, el valor de éste puede ser el nombre o el id proporcionados al consultar la lista de proveedores:
 
 ```
 GET invoicing/mx/providers?api_key={{sync_api_key}}&id_user={{sync_id_user}}
