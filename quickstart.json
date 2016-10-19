@@ -1,195 +1,408 @@
 {
-	"id": "1ff9d6e8-d07b-71f9-4859-8b99e5a5f14d",
-	"name": "Sync Quickstart",
-	"description": "",
-	"order": [
-		"fc43f92c-5e4e-1e11-ab40-1dc5d7c30ffa",
-		"74c8e255-9ea6-cd98-12f5-5bd6ff2b7fbd",
-		"d7696842-139f-0501-71d4-e2783ee0828e",
-		"b007a3ec-27d5-889f-3947-2c189212bbdd",
-		"4f255395-bdcc-6ca6-478b-dd9e8192d5b4",
-		"fe504a4a-6dc3-903a-f31e-d2916330f88e",
-		"bc4d3b77-4af0-e37c-bbe5-98fb918bb5d0",
-		"276a1d91-6526-e276-ae87-264f3ff6ca3e",
-		"ec3c216b-def8-a7c1-1845-79cd6ac3534c"
-	],
-	"folders": [],
-	"timestamp": 1470928607446,
-	"owner": "772710",
-	"remoteLink": "",
-	"public": false,
-	"published": false,
-	"requests": [
+	"variables": [],
+	"info": {
+		"name": "Sync Quickstart",
+		"_postman_id": "c2e2670a-c61d-f296-c3dc-2c5759004130",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
 		{
-			"id": "276a1d91-6526-e276-ae87-264f3ff6ca3e",
-			"headers": "",
-			"url": "{{sync_head_url}}transactions?token={{sync_token}}&id_credential={{sync_id_credential}}",
-			"preRequestScript": null,
-			"pathVariables": {},
-			"method": "GET",
-			"data": null,
-			"dataMode": "params",
-			"version": 2,
-			"tests": "\nvar jsonData = JSON.parse(responseBody);\ntests[\"Gets transactions\"] = jsonData.code === 200;\n\nif(tests[\"Gets transactions\"]){\n    var jsonData = JSON.parse(responseBody);\n    transactions = jsonData.response;\n    tests[\"Transactions synchronized \" + transactions.length] = true;\n}//End of if\n\n\n\n\n\n\n",
-			"currentHelper": "normal",
-			"helperAttributes": {},
-			"time": 1470932366273,
-			"name": "Get transactions",
-			"description": "",
-			"collectionId": "1ff9d6e8-d07b-71f9-4859-8b99e5a5f14d",
-			"responses": []
-		},
-		{
-			"id": "4f255395-bdcc-6ca6-478b-dd9e8192d5b4",
-			"headers": "",
-			"url": "{{sync_head_url}}catalogues/sites?token={{sync_token}}&is_test=true",
-			"preRequestScript": null,
-			"pathVariables": {},
-			"method": "GET",
-			"data": null,
-			"dataMode": "params",
-			"tests": "\nvar jsonData = JSON.parse(responseBody);\ntests[\"Got test sites (institutions)\"] = jsonData.code === 200;\n\nif(tests[\"Got test sites (institutions)\"]){\n    var jsonData = JSON.parse(responseBody);\n    test_sites = jsonData.response;\n    for(var i=0; i<test_sites.length; i++){\n        test_site = test_sites[i];\n        tests[i + '. ' + test_site.name] = true;\n        if(test_site.name == 'Normal'){\n            postman.setGlobalVariable(\"sync_id_test_site\", test_site.id_site);\n            tests['Got \"Normal\" id_site'] = true;\n        }//End of if\n    }//End of for\n}//End of if\n\n\n\n\n",
-			"currentHelper": "normal",
-			"helperAttributes": {},
-			"time": 1470930158729,
-			"name": "Get testing sites (institutions)",
-			"description": "",
-			"collectionId": "1ff9d6e8-d07b-71f9-4859-8b99e5a5f14d",
-			"responses": []
-		},
-		{
-			"id": "74c8e255-9ea6-cd98-12f5-5bd6ff2b7fbd",
-			"headers": "Content-Type: application/json\n",
-			"url": "{{sync_head_url}}users?api_key={{sync_api_key}}",
-			"preRequestScript": null,
-			"pathVariables": {},
-			"method": "POST",
-			"data": [],
-			"dataMode": "raw",
-			"version": 2,
-			"tests": "\nvar jsonData = JSON.parse(responseBody);\ntests[\"Creates a new user\"] = jsonData.code === 200;\n\nif(tests[\"Creates a new user\"]){\n    var jsonData = JSON.parse(responseBody);\n    user = jsonData.response;\n    tests[\"User \" + user.id_user] = true;\n    postman.setGlobalVariable(\"sync_id_user\", user.id_user);\n}//End of if\n\n\n",
-			"currentHelper": "normal",
-			"helperAttributes": {},
-			"time": 1470929541746,
-			"name": "Creates a new user",
-			"description": "",
-			"collectionId": "1ff9d6e8-d07b-71f9-4859-8b99e5a5f14d",
-			"responses": [],
-			"rawModeData": "{\n    \"api_key\" : \"{{sync_api_key}}\",\n    \"name\" : \"{{sync_username}}\"\n}"
-		},
-		{
-			"id": "b007a3ec-27d5-889f-3947-2c189212bbdd",
-			"headers": "Content-Type: application/json\n",
-			"url": "{{sync_head_url}}sessions?api_key={{sync_api_key}}",
-			"preRequestScript": null,
-			"pathVariables": {},
-			"method": "POST",
-			"data": [],
-			"dataMode": "raw",
-			"tests": "\nvar jsonData = JSON.parse(responseBody);\ntests[\"Inits a session\"] = jsonData.code === 200;\n\nif(tests[\"Inits a session\"]){\n    var jsonData = JSON.parse(responseBody);\n    session = jsonData.response;\n    tests[\"Session token \" + session.token] = true;\n    postman.setGlobalVariable(\"sync_token\", session.token);\n}//End of if\n\n\n",
-			"currentHelper": "normal",
-			"helperAttributes": {},
-			"time": 1470929667382,
-			"name": "Inits session",
-			"description": "",
-			"collectionId": "1ff9d6e8-d07b-71f9-4859-8b99e5a5f14d",
-			"responses": [],
-			"rawModeData": "{\n    \"api_key\" : \"{{sync_api_key}}\",\n    \"id_user\" : \"{{sync_id_user}}\"\n}"
-		},
-		{
-			"id": "bc4d3b77-4af0-e37c-bbe5-98fb918bb5d0",
-			"headers": "",
-			"url": "{{sync_status_url}}?token={{sync_token}}",
-			"pathVariables": {},
-			"preRequestScript": null,
-			"method": "GET",
-			"collectionId": "1ff9d6e8-d07b-71f9-4859-8b99e5a5f14d",
-			"data": null,
-			"dataMode": "params",
-			"name": "Check credentials sync status",
-			"description": "",
-			"descriptionFormat": "html",
-			"time": 1470930722602,
-			"version": 2,
-			"responses": [],
-			"tests": "\n\nvar jsonData = JSON.parse(responseBody);\ntests[\"Checking credentials sync status\"] = jsonData.code === 200;\n\nif(tests[\"Checking credentials sync status\"]){\n    var jsonData = JSON.parse(responseBody);\n    status = jsonData.response;\n}//End of if\n\n\n\n\n\n\n",
-			"currentHelper": "normal",
-			"helperAttributes": {}
-		},
-		{
-			"id": "d7696842-139f-0501-71d4-e2783ee0828e",
-			"headers": "",
-			"url": "{{sync_head_url}}users?api_key={{sync_api_key}}",
-			"preRequestScript": null,
-			"pathVariables": {},
-			"method": "GET",
-			"data": null,
-			"dataMode": "params",
-			"tests": "\nvar jsonData = JSON.parse(responseBody);\ntests[\"Got API key users (again)\"] = jsonData.code === 200;\n\nif(tests[\"Got API key users (again)\"]){\n    var jsonData = JSON.parse(responseBody);\n    users = jsonData.response;\n    tests[\"Users obtained: \" + users.length] = true;\n}//End of if\n",
-			"currentHelper": "normal",
-			"helperAttributes": {},
-			"time": 1470929311592,
-			"name": "Get users linked to an API key (again)",
-			"description": "",
-			"collectionId": "1ff9d6e8-d07b-71f9-4859-8b99e5a5f14d",
-			"responses": []
-		},
-		{
-			"id": "ec3c216b-def8-a7c1-1845-79cd6ac3534c",
-			"headers": "",
-			"url": "{{sync_head_url}}users/{{sync_id_user}}?api_key={{sync_api_key}}",
-			"pathVariables": {},
-			"preRequestScript": null,
-			"method": "DELETE",
-			"collectionId": "1ff9d6e8-d07b-71f9-4859-8b99e5a5f14d",
-			"data": null,
-			"dataMode": "params",
-			"name": "Deletes user",
-			"description": "",
-			"descriptionFormat": "html",
-			"time": 1470932348908,
-			"version": 2,
-			"responses": [],
-			"tests": "tests[\"Testing user deleted\"] = responseCode.code === 200;\n\npostman.clearGlobalVariable(\"sync_id_user\");\npostman.clearGlobalVariable(\"sync_token\");\npostman.clearGlobalVariable(\"sync_id_test_site\");\npostman.clearGlobalVariable(\"sync_id_credential\");\npostman.clearGlobalVariable(\"sync_status_url\");\npostman.clearGlobalVariable(\"sync_head_url\");\npostman.clearGlobalVariable(\"sync_username\");\n\ntests[\"Postman global data deleted\"] = true;",
-			"currentHelper": "normal",
-			"helperAttributes": {}
-		},
-		{
-			"id": "fc43f92c-5e4e-1e11-ab40-1dc5d7c30ffa",
-			"headers": "",
-			"url": "{{sync_head_url}}users?api_key={{sync_api_key}}",
-			"preRequestScript": "\npostman.setGlobalVariable(\"sync_head_url\", \"https://sync.paybook.com/v1/\");\npostman.setGlobalVariable(\"sync_username\", \"postman_test\");",
-			"pathVariables": {},
-			"method": "GET",
-			"data": null,
-			"dataMode": "params",
-			"tests": "\nvar jsonData = JSON.parse(responseBody);\ntests[\"Got API key users\"] = jsonData.code === 200;\n\nif(tests[\"Got API key users\"]){\n    var jsonData = JSON.parse(responseBody);\n    users = jsonData.response;\n    tests[\"Users obtained: \" + users.length] = true;\n}//End of if\n",
-			"currentHelper": "normal",
-			"helperAttributes": {},
-			"time": 1470932006877,
 			"name": "Get users linked to an API key",
-			"description": "",
-			"collectionId": "1ff9d6e8-d07b-71f9-4859-8b99e5a5f14d",
-			"responses": []
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": "\nvar jsonData = JSON.parse(responseBody);\ntests[\"Got API key users\"] = jsonData.code === 200;\n\nif(tests[\"Got API key users\"]){\n    var jsonData = JSON.parse(responseBody);\n    users = jsonData.response;\n    tests[\"Users obtained: \" + users.length] = true;\n}//End of if\n"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": "\npostman.setGlobalVariable(\"sync_head_url\", \"https://sync.paybook.com/v1/\");\npostman.setGlobalVariable(\"sync_username\", \"postman_test\");"
+					}
+				}
+			],
+			"request": {
+				"url": "{{sync_head_url}}users?api_key={{sync_api_key}}",
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"description": ""
+			},
+			"response": []
 		},
 		{
-			"id": "fe504a4a-6dc3-903a-f31e-d2916330f88e",
-			"headers": "Content-Type: application/json\n",
-			"url": "{{sync_head_url}}credentials",
-			"preRequestScript": null,
-			"pathVariables": {},
-			"method": "POST",
-			"data": [],
-			"dataMode": "raw",
-			"tests": "\nvar jsonData = JSON.parse(responseBody);\ntests[\"Creates new credentials\"] = jsonData.code === 200;\n\nif(tests[\"Creates new credentials\"]){\n    var jsonData = JSON.parse(responseBody);\n    credentials = jsonData.response;\n    postman.setGlobalVariable(\"sync_id_credential\", credentials.id_credential);\n    postman.setGlobalVariable(\"sync_status_url\", credentials.status);\n    tests[\"Got credentials status url: \" + credentials.status] = true;\n}//End of if\n\n\n\n\n\n\n",
-			"currentHelper": "normal",
-			"helperAttributes": {},
-			"time": 1470930521888,
+			"name": "Creates a new user",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": "\nvar jsonData = JSON.parse(responseBody);\ntests[\"Creates a new user\"] = jsonData.code === 200;\n\nif(tests[\"Creates a new user\"]){\n    var jsonData = JSON.parse(responseBody);\n    user = jsonData.response;\n    tests[\"User \" + user.id_user] = true;\n    postman.setGlobalVariable(\"sync_id_user\", user.id_user);\n}//End of if\n\n\n"
+					}
+				}
+			],
+			"request": {
+				"url": "{{sync_head_url}}users?api_key={{sync_api_key}}",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"api_key\" : \"{{sync_api_key}}\",\n    \"name\" : \"{{sync_username}}\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Get users linked to an API key (again)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": "\nvar jsonData = JSON.parse(responseBody);\ntests[\"Got API key users (again)\"] = jsonData.code === 200;\n\nif(tests[\"Got API key users (again)\"]){\n    var jsonData = JSON.parse(responseBody);\n    users = jsonData.response;\n    tests[\"Users obtained: \" + users.length] = true;\n}//End of if\n"
+					}
+				}
+			],
+			"request": {
+				"url": "{{sync_head_url}}users?api_key={{sync_api_key}}",
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Inits session",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": "\nvar jsonData = JSON.parse(responseBody);\ntests[\"Inits a session\"] = jsonData.code === 200;\n\nif(tests[\"Inits a session\"]){\n    var jsonData = JSON.parse(responseBody);\n    session = jsonData.response;\n    tests[\"Session token \" + session.token] = true;\n    postman.setGlobalVariable(\"sync_token\", session.token);\n}//End of if\n\n\n"
+					}
+				}
+			],
+			"request": {
+				"url": "{{sync_head_url}}sessions?api_key={{sync_api_key}}",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"api_key\" : \"{{sync_api_key}}\",\n    \"id_user\" : \"{{sync_id_user}}\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Get testing sites (institutions)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": "\nvar jsonData = JSON.parse(responseBody);\ntests[\"Got test sites (institutions)\"] = jsonData.code === 200;\n\nif(tests[\"Got test sites (institutions)\"]){\n    var jsonData = JSON.parse(responseBody);\n    test_sites = jsonData.response;\n    for(var i=0; i<test_sites.length; i++){\n        test_site = test_sites[i];\n        tests[i + '. ' + test_site.name] = true;\n        if(test_site.name == 'Normal'){\n            postman.setGlobalVariable(\"sync_id_test_site\", test_site.id_site);\n            tests['Got \"Normal\" id_site'] = true;\n        }//End of if\n    }//End of for\n}//End of if\n\n\n\n\n"
+					}
+				}
+			],
+			"request": {
+				"url": "{{sync_head_url}}catalogues/sites?token={{sync_token}}&is_test=true",
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
 			"name": "Create a new credentials",
-			"description": "",
-			"collectionId": "1ff9d6e8-d07b-71f9-4859-8b99e5a5f14d",
-			"responses": [],
-			"rawModeData": "{\"id_site\": \"{{sync_id_test_site}}\", \"credentials\": {\"username\": \"test\", \"password\": \"test\"}, \"token\": \"{{sync_token}}\"}"
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": "\nvar jsonData = JSON.parse(responseBody);\ntests[\"Creates new credentials\"] = jsonData.code === 200;\n\nif(tests[\"Creates new credentials\"]){\n    var jsonData = JSON.parse(responseBody);\n    credentials = jsonData.response;\n    postman.setGlobalVariable(\"sync_id_credential\", credentials.id_credential);\n    postman.setGlobalVariable(\"sync_status_url\", credentials.status);\n    tests[\"Got credentials status url: \" + credentials.status] = true;\n}//End of if\n\n\n\n\n\n\n"
+					}
+				}
+			],
+			"request": {
+				"url": "{{sync_head_url}}credentials",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"id_site\": \"{{sync_id_test_site}}\", \"credentials\": {\"username\": \"test\", \"password\": \"test\"}, \"token\": \"{{sync_token}}\"}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Check credentials sync status",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": "\n\nvar jsonData = JSON.parse(responseBody);\ntests[\"Checking credentials sync status\"] = jsonData.code === 200;\n\nif(tests[\"Checking credentials sync status\"]){\n    var jsonData = JSON.parse(responseBody);\n    status = jsonData.response;\n}//End of if\n\n\n\n\n\n\n"
+					}
+				}
+			],
+			"request": {
+				"url": "{{sync_status_url}}?token={{sync_token}}",
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Get transactions",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": "\nvar jsonData = JSON.parse(responseBody);\ntests[\"Gets transactions\"] = jsonData.code === 200;\n\nif(tests[\"Gets transactions\"]){\n    var jsonData = JSON.parse(responseBody);\n    transactions = jsonData.response;\n    tests[\"Transactions synchronized \" + transactions.length] = true;\n}//End of if\n\n\n\n\n\n\n"
+					}
+				}
+			],
+			"request": {
+				"url": "{{sync_head_url}}transactions?token={{sync_token}}&id_credential={{sync_id_credential}}",
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Create new taxpayer",
+			"request": {
+				"url": "{{sync_head_url}}invoicing/mx/taxpayers",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \r\n\t\"api_key\" : \"{{sync_api_key}}\",\r\n\t\"id_user\": \"{{sync_id_user}}\",\r\n\t\"password\": \"12345678a\",\r\n\t\"taxpayer\": \"AAA010101AAA\",\r\n\t\"cer\": \"MIIEYTCCA0mgAwIBAgIUMjAwMDEwMDAwMDAyMDAwMDE0MjgwDQYJKoZIhvcNAQEFBQAwggFcMRowGAYDVQQDDBFBLkMuIDIgZGUgcHJ1ZWJhczEvMC0GA1UECgwmU2VydmljaW8gZGUgQWRtaW5pc3RyYWNpw7NuIFRyaWJ1dGFyaWExODA2BgNVBAsML0FkbWluaXN0cmFjacOzbiBkZSBTZWd1cmlkYWQgZGUgbGEgSW5mb3JtYWNpw7NuMSkwJwYJKoZIhvcNAQkBFhphc2lzbmV0QHBydWViYXMuc2F0LmdvYi5teDEmMCQGA1UECQwdQXYuIEhpZGFsZ28gNzcsIENvbC4gR3VlcnJlcm8xDjAMBgNVBBEMBTA2MzAwMQswCQYDVQQGEwJNWDEZMBcGA1UECAwQRGlzdHJpdG8gRmVkZXJhbDESMBAGA1UEBwwJQ295b2Fjw6FuMTQwMgYJKoZIhvcNAQkCDCVSZXNwb25zYWJsZTogQXJhY2VsaSBHYW5kYXJhIEJhdXRpc3RhMB4XDTEzMDUwNzE2MDEyOVoXDTE3MDUwNzE2MDEyOVowgdsxKTAnBgNVBAMTIEFDQ0VNIFNFUlZJQ0lPUyBFTVBSRVNBUklBTEVTIFNDMSkwJwYDVQQpEyBBQ0NFTSBTRVJWSUNJT1MgRU1QUkVTQVJJQUxFUyBTQzEpMCcGA1UEChMgQUNDRU0gU0VSVklDSU9TIEVNUFJFU0FSSUFMRVMgU0MxJTAjBgNVBC0THEFBQTAxMDEwMUFBQSAvIEhFR1Q3NjEwMDM0UzIxHjAcBgNVBAUTFSAvIEhFR1Q3NjEwMDNNREZOU1IwODERMA8GA1UECxMIcHJvZHVjdG8wgZ8wDQYJKoZIhvcNAQEBBQADgY0AMIGJAoGBAKS/beUVy6E3aODaNuLd2S3PXaQre0tGxmYTeUxa55x2t/7919ttgOpKF6hPF5KvlYh4ztqQqP4yEV+HjH7yy/2d/+e7t+J61jTrbdLqT3WD0+s5fCL6JOrF4hqy//EGdfvYftdGRNrZH+dAjWWml2S/hrN9aUxraS5qqO1b7btlAgMBAAGjHTAbMAwGA1UdEwEB/wQCMAAwCwYDVR0PBAQDAgbAMA0GCSqGSIb3DQEBBQUAA4IBAQACPXAWZX2DuKiZVv35RS1WFKgT2ubUO9C+byfZapV6ZzYNOiA4KmpkqHU/bkZHqKjR+R59hoYhVdn+ClUIliZf2ChHh8s0a0vBRNJ3IHfA1akWdzocYZLXjz3m0Er31BY+uS3qWUtPsONGVDyZL6IUBBUlFoecQhP9AO39er8zIbeU2b0MMBJxCt4vbDKFvT9i3V0Puoo+kmmkf15D2rBGR+drd8H8Yg8TDGFKf2zKmRsgT7nIeou6WpfYp570WIvLJQY+fsMp334D05Up5ykYSAxUGa30RdUzA4rxN5hT+W9whWVGD88TD33Nw55uNRUcRO3ZUVHmdWRG+GjhlfsD\",\r\n\t\"key\": \"MIICxjBABgkqhkiG9w0BBQ0wMzAbBgkqhkiG9w0BBQwwDgQIAgEAAoGBAKQCAgQAMBQGCCqGSIb3DQMHBAgwggJ2AgEAMASCAoD+W0qS7cu6pXUqVr3xMAvfnfTvmdYzPHjXh4IB45m2t66IShzPaQrNzj8qy1BEDaorR/sYMH4yPC+ejIfmP+qLuUCxsNaQSPLc9UYkpMP55LO5f3sq4CKcgoIMKVQchOfvUWzFz16RxjWIkgwZbsd5tHyjYMCMwZZTN05mxdAN+r9HFbGB9XAlElQylf4yWtft4TIBB6xOpiO+lKGXJzycstK+SfFpb7/R4LYaEG8V6ydGfqzDZUe/8oSI2RwO7RNzkWpUblXNuVucP7PcrtQWbq4/0AGwFilTTWTyAnG7xTuDGSuQGH/cs6TEHHP6E6GjO2Qba1VUmC93ZB6ectQC5utCJyQUvwjz3M9lLDuXnNOSwQCf/XUjpH8NFkQgMeoMXtDFsQ0n3J3f987OK3uWXtGMCF8S3Nh4OX0FUnG5zP7+dmS3EDjI4eXUxGmd2igFW8BfdPUbGLsd7K7H6IookHfP/mNsW8IHM7Igfl7EHQ+sbBFN5KHyWQRvLK5swQ8kE3FTY5ka0iR8vKuQ5/D3Zt/IvxY7bEFfhcoPmyN+ZPKcEyqpPUpsgXSFlipsqChrdNQZtLgBVTfs6S4jO6APA5EELQovUNzMGqXd2uQf8lzxypcsRSIwk9fZ0R+ER19DzMIzfr1Dp2FivbyDyrHj4I8gXsDffrW6VOjejv7D5c/rrON8bosOJiXKjXFrrT2GBdTZK/Sm7p6jAGQhlWLtdVmu5WpHMIXeIq1jrEuDM6VsUCMAPUezzvbAW9SZVdUbOnsQMJt7lZxAILOGwkBTFX5w2JsT9Dhbvggbf9d4KRDXGt7ynqVYin9W8+zesckHY2wEQo/TY4DhFkJJ7ap9\"\r\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Edit taxpayer",
+			"request": {
+				"url": "{{sync_head_url}}invoicing/mx/taxpayers",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \r\n\t\"api_key\" : \"{{sync_api_key}}\",\r\n\t\"id_user\": \"{{sync_id_user}}\",\r\n\t\"password\": \"12345678a\",\r\n\t\"taxpayer\": \"AAA010101AAA\",\r\n\t\"cer\": \"MIIEYTCCA0mgAwIBAgIUMjAwMDEwMDAwMDAyMDAwMDE0MjgwDQYJKoZIhvcNAQEFBQAwggFcMRowGAYDVQQDDBFBLkMuIDIgZGUgcHJ1ZWJhczEvMC0GA1UECgwmU2VydmljaW8gZGUgQWRtaW5pc3RyYWNpw7NuIFRyaWJ1dGFyaWExODA2BgNVBAsML0FkbWluaXN0cmFjacOzbiBkZSBTZWd1cmlkYWQgZGUgbGEgSW5mb3JtYWNpw7NuMSkwJwYJKoZIhvcNAQkBFhphc2lzbmV0QHBydWViYXMuc2F0LmdvYi5teDEmMCQGA1UECQwdQXYuIEhpZGFsZ28gNzcsIENvbC4gR3VlcnJlcm8xDjAMBgNVBBEMBTA2MzAwMQswCQYDVQQGEwJNWDEZMBcGA1UECAwQRGlzdHJpdG8gRmVkZXJhbDESMBAGA1UEBwwJQ295b2Fjw6FuMTQwMgYJKoZIhvcNAQkCDCVSZXNwb25zYWJsZTogQXJhY2VsaSBHYW5kYXJhIEJhdXRpc3RhMB4XDTEzMDUwNzE2MDEyOVoXDTE3MDUwNzE2MDEyOVowgdsxKTAnBgNVBAMTIEFDQ0VNIFNFUlZJQ0lPUyBFTVBSRVNBUklBTEVTIFNDMSkwJwYDVQQpEyBBQ0NFTSBTRVJWSUNJT1MgRU1QUkVTQVJJQUxFUyBTQzEpMCcGA1UEChMgQUNDRU0gU0VSVklDSU9TIEVNUFJFU0FSSUFMRVMgU0MxJTAjBgNVBC0THEFBQTAxMDEwMUFBQSAvIEhFR1Q3NjEwMDM0UzIxHjAcBgNVBAUTFSAvIEhFR1Q3NjEwMDNNREZOU1IwODERMA8GA1UECxMIcHJvZHVjdG8wgZ8wDQYJKoZIhvcNAQEBBQADgY0AMIGJAoGBAKS/beUVy6E3aODaNuLd2S3PXaQre0tGxmYTeUxa55x2t/7919ttgOpKF6hPF5KvlYh4ztqQqP4yEV+HjH7yy/2d/+e7t+J61jTrbdLqT3WD0+s5fCL6JOrF4hqy//EGdfvYftdGRNrZH+dAjWWml2S/hrN9aUxraS5qqO1b7btlAgMBAAGjHTAbMAwGA1UdEwEB/wQCMAAwCwYDVR0PBAQDAgbAMA0GCSqGSIb3DQEBBQUAA4IBAQACPXAWZX2DuKiZVv35RS1WFKgT2ubUO9C+byfZapV6ZzYNOiA4KmpkqHU/bkZHqKjR+R59hoYhVdn+ClUIliZf2ChHh8s0a0vBRNJ3IHfA1akWdzocYZLXjz3m0Er31BY+uS3qWUtPsONGVDyZL6IUBBUlFoecQhP9AO39er8zIbeU2b0MMBJxCt4vbDKFvT9i3V0Puoo+kmmkf15D2rBGR+drd8H8Yg8TDGFKf2zKmRsgT7nIeou6WpfYp570WIvLJQY+fsMp334D05Up5ykYSAxUGa30RdUzA4rxN5hT+W9whWVGD88TD33Nw55uNRUcRO3ZUVHmdWRG+GjhlfsD\",\r\n\t\"key\": \"MIICxjBABgkqhkiG9w0BBQ0wMzAbBgkqhkiG9w0BBQwwDgQIAgEAAoGBAKQCAgQAMBQGCCqGSIb3DQMHBAgwggJ2AgEAMASCAoD+W0qS7cu6pXUqVr3xMAvfnfTvmdYzPHjXh4IB45m2t66IShzPaQrNzj8qy1BEDaorR/sYMH4yPC+ejIfmP+qLuUCxsNaQSPLc9UYkpMP55LO5f3sq4CKcgoIMKVQchOfvUWzFz16RxjWIkgwZbsd5tHyjYMCMwZZTN05mxdAN+r9HFbGB9XAlElQylf4yWtft4TIBB6xOpiO+lKGXJzycstK+SfFpb7/R4LYaEG8V6ydGfqzDZUe/8oSI2RwO7RNzkWpUblXNuVucP7PcrtQWbq4/0AGwFilTTWTyAnG7xTuDGSuQGH/cs6TEHHP6E6GjO2Qba1VUmC93ZB6ectQC5utCJyQUvwjz3M9lLDuXnNOSwQCf/XUjpH8NFkQgMeoMXtDFsQ0n3J3f987OK3uWXtGMCF8S3Nh4OX0FUnG5zP7+dmS3EDjI4eXUxGmd2igFW8BfdPUbGLsd7K7H6IookHfP/mNsW8IHM7Igfl7EHQ+sbBFN5KHyWQRvLK5swQ8kE3FTY5ka0iR8vKuQ5/D3Zt/IvxY7bEFfhcoPmyN+ZPKcEyqpPUpsgXSFlipsqChrdNQZtLgBVTfs6S4jO6APA5EELQovUNzMGqXd2uQf8lzxypcsRSIwk9fZ0R+ER19DzMIzfr1Dp2FivbyDyrHj4I8gXsDffrW6VOjejv7D5c/rrON8bosOJiXKjXFrrT2GBdTZK/Sm7p6jAGQhlWLtdVmu5WpHMIXeIq1jrEuDM6VsUCMAPUezzvbAW9SZVdUbOnsQMJt7lZxAILOGwkBTFX5w2JsT9Dhbvggbf9d4KRDXGt7ynqVYin9W8+zesckHY2wEQo/TY4DhFkJJ7ap9\"\r\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Get taxpayers",
+			"request": {
+				"url": "{{sync_head_url}}invoicing/mx/taxpayers?api_key={{sync_api_key}}&id_user={{sync_id_user}}",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \r\n\t\"api_key\" : \"{{sync_api_key}}\",\r\n\t\"id_user\": \"{{sync_id_user}}\",\r\n\t\"password\": \"12345678a\",\r\n\t\"taxpayer\": \"AAA010101AAA\",\r\n\t\"cer\": \"MIIEYTCCA0mgAwIBAgIUMjAwMDEwMDAwMDAyMDAwMDE0MjgwDQYJKoZIhvcNAQEFBQAwggFcMRowGAYDVQQDDBFBLkMuIDIgZGUgcHJ1ZWJhczEvMC0GA1UECgwmU2VydmljaW8gZGUgQWRtaW5pc3RyYWNpw7NuIFRyaWJ1dGFyaWExODA2BgNVBAsML0FkbWluaXN0cmFjacOzbiBkZSBTZWd1cmlkYWQgZGUgbGEgSW5mb3JtYWNpw7NuMSkwJwYJKoZIhvcNAQkBFhphc2lzbmV0QHBydWViYXMuc2F0LmdvYi5teDEmMCQGA1UECQwdQXYuIEhpZGFsZ28gNzcsIENvbC4gR3VlcnJlcm8xDjAMBgNVBBEMBTA2MzAwMQswCQYDVQQGEwJNWDEZMBcGA1UECAwQRGlzdHJpdG8gRmVkZXJhbDESMBAGA1UEBwwJQ295b2Fjw6FuMTQwMgYJKoZIhvcNAQkCDCVSZXNwb25zYWJsZTogQXJhY2VsaSBHYW5kYXJhIEJhdXRpc3RhMB4XDTEzMDUwNzE2MDEyOVoXDTE3MDUwNzE2MDEyOVowgdsxKTAnBgNVBAMTIEFDQ0VNIFNFUlZJQ0lPUyBFTVBSRVNBUklBTEVTIFNDMSkwJwYDVQQpEyBBQ0NFTSBTRVJWSUNJT1MgRU1QUkVTQVJJQUxFUyBTQzEpMCcGA1UEChMgQUNDRU0gU0VSVklDSU9TIEVNUFJFU0FSSUFMRVMgU0MxJTAjBgNVBC0THEFBQTAxMDEwMUFBQSAvIEhFR1Q3NjEwMDM0UzIxHjAcBgNVBAUTFSAvIEhFR1Q3NjEwMDNNREZOU1IwODERMA8GA1UECxMIcHJvZHVjdG8wgZ8wDQYJKoZIhvcNAQEBBQADgY0AMIGJAoGBAKS/beUVy6E3aODaNuLd2S3PXaQre0tGxmYTeUxa55x2t/7919ttgOpKF6hPF5KvlYh4ztqQqP4yEV+HjH7yy/2d/+e7t+J61jTrbdLqT3WD0+s5fCL6JOrF4hqy//EGdfvYftdGRNrZH+dAjWWml2S/hrN9aUxraS5qqO1b7btlAgMBAAGjHTAbMAwGA1UdEwEB/wQCMAAwCwYDVR0PBAQDAgbAMA0GCSqGSIb3DQEBBQUAA4IBAQACPXAWZX2DuKiZVv35RS1WFKgT2ubUO9C+byfZapV6ZzYNOiA4KmpkqHU/bkZHqKjR+R59hoYhVdn+ClUIliZf2ChHh8s0a0vBRNJ3IHfA1akWdzocYZLXjz3m0Er31BY+uS3qWUtPsONGVDyZL6IUBBUlFoecQhP9AO39er8zIbeU2b0MMBJxCt4vbDKFvT9i3V0Puoo+kmmkf15D2rBGR+drd8H8Yg8TDGFKf2zKmRsgT7nIeou6WpfYp570WIvLJQY+fsMp334D05Up5ykYSAxUGa30RdUzA4rxN5hT+W9whWVGD88TD33Nw55uNRUcRO3ZUVHmdWRG+GjhlfsD\",\r\n\t\"key\": \"MIICxjBABgkqhkiG9w0BBQ0wMzAbBgkqhkiG9w0BBQwwDgQIAgEAAoGBAKQCAgQAMBQGCCqGSIb3DQMHBAgwggJ2AgEAMASCAoD+W0qS7cu6pXUqVr3xMAvfnfTvmdYzPHjXh4IB45m2t66IShzPaQrNzj8qy1BEDaorR/sYMH4yPC+ejIfmP+qLuUCxsNaQSPLc9UYkpMP55LO5f3sq4CKcgoIMKVQchOfvUWzFz16RxjWIkgwZbsd5tHyjYMCMwZZTN05mxdAN+r9HFbGB9XAlElQylf4yWtft4TIBB6xOpiO+lKGXJzycstK+SfFpb7/R4LYaEG8V6ydGfqzDZUe/8oSI2RwO7RNzkWpUblXNuVucP7PcrtQWbq4/0AGwFilTTWTyAnG7xTuDGSuQGH/cs6TEHHP6E6GjO2Qba1VUmC93ZB6ectQC5utCJyQUvwjz3M9lLDuXnNOSwQCf/XUjpH8NFkQgMeoMXtDFsQ0n3J3f987OK3uWXtGMCF8S3Nh4OX0FUnG5zP7+dmS3EDjI4eXUxGmd2igFW8BfdPUbGLsd7K7H6IookHfP/mNsW8IHM7Igfl7EHQ+sbBFN5KHyWQRvLK5swQ8kE3FTY5ka0iR8vKuQ5/D3Zt/IvxY7bEFfhcoPmyN+ZPKcEyqpPUpsgXSFlipsqChrdNQZtLgBVTfs6S4jO6APA5EELQovUNzMGqXd2uQf8lzxypcsRSIwk9fZ0R+ER19DzMIzfr1Dp2FivbyDyrHj4I8gXsDffrW6VOjejv7D5c/rrON8bosOJiXKjXFrrT2GBdTZK/Sm7p6jAGQhlWLtdVmu5WpHMIXeIq1jrEuDM6VsUCMAPUezzvbAW9SZVdUbOnsQMJt7lZxAILOGwkBTFX5w2JsT9Dhbvggbf9d4KRDXGt7ynqVYin9W8+zesckHY2wEQo/TY4DhFkJJ7ap9\"\r\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Stamp invoice",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": "var jsonData = JSON.parse(responseBody);\nvar uuid = jsonData.response.uuid;\npostman.setGlobalVariable(\"sync_invoice_uuid\", uuid);"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": "var date = new Date().getTime() - 21600*1000 + Math.floor((Math.random() * 20000) + 2000);\nvar new_iso_date = new Date(date).toISOString().substring(0, 19);\npostman.setGlobalVariable(\"new_iso_date\", new_iso_date);\n"
+					}
+				}
+			],
+			"request": {
+				"url": "{{sync_head_url}}invoicing/mx/invoices",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "\n{\n\"api_key\" : \"{{sync_api_key}}\",\n\"id_user\": \"{{sync_id_user}}\",\n\"id_provider\":\"acme\",\n\"invoice_data\": {   \n\t\t\"serie\": \"A\",\n\t\t\"folio\": \"35\",\n\t\t\"fecha\": \"{{new_iso_date}}\",\n\t\t\"formaDePago\": \"Parcialidad 1 de 30\",\n\t\t\"condicionesDePago\": \"Valido por 30 días\",\n\t\t\"subTotal\": \"2168.22\",\n\t\t\"descuento\":\"20\",\n\t\t\"motivoDescuento\":\"Promocion mensual\",\n\t\t\"tipoCambio\":\"18.22\",\n\t\t\"moneda\":\"MXN\",\n\t\t\"total\":\"2270.1\",\n\t\t\"tipoDeComprobante\":\"ingreso\",\n\t\t\"metodoDePago\":\"02\",\n\t\t\"lugarExpedicion\":\"Ciudad de México\",\n\t\t\"numCtaPago\":\"5219022\",\n\t\t\"emisor\": {\n\t\t\t\"nombre\":\"Alejandro Hernandez Rodriguez\",\n\t\t\t\"rfc\":\"AAA010101AAA\",\n\t\t\t\"domicilioFiscal\":{\n\t\t\t\t\"calle\":\"Calle 25\",\n\t\t\t\t\"municipio\":\"Monterrey\",\n\t\t\t\t\"estado\":\"Nuevo Leon\",\n\t\t\t\t\"pais\":\"Mexico\",\n\t\t\t\t\"codigoPostal\":\"64450 \"\n\t\t\t},\n\t\t\t\"expedidoEn\":{\n\t\t\t\t\"calle\":\"Calle 25\",\n\t\t\t\t\"municipio\":\"Monterrey\",\n\t\t\t\t\"estado\":\"Nuevo Leon\",\n\t\t\t\t\"pais\":\"Mexico\",\n\t\t\t\t\"codigoPostal\":\"64450 \"\n\t\t\t},\n\t\t\t\"regimenFiscal\":[{\"regimen\":\"Empleado Honorarios\"}]\n\t\t},\n\t\t\"receptor\":{\n\t\t\t\"rfc\":\"AOOM8309271A8\",\n\t\t\t\"nombre\": \"Pedro Perez Hernandez\",\n\t\t\t\"domicilio\":{\n\t\t\t\t\"calle\":\"Calle 25\",\n\t\t\t\t\"municipio\":\"Monterrey\",\n\t\t\t\t\"estado\":\"Nuevo Leon\",\n\t\t\t\t\"pais\": \"Mexico\",\n\t\t\t\t\"codigoPostal\":\"64450 \"\n\t\t\t}\n\t\t},\n\t\t\"conceptos\": [\n\t\t\t{\n\t\t\t\t\"cantidad\": \"10.5\",\n\t\t\t\t\"unidad\": \"Kg\",\n\t\t\t\t\"descripcion\": \"Alambre calibre 22\",\n\t\t\t\t\"noIdentificacion\": \"SK3218932190\",\n\t\t\t\t\"valorUnitario\": \"10\",\n\t\t\t\t\"importe\": \"105\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"cantidad\": \"5\",\n\t\t\t\t\"unidad\": \"Mt\",\n\t\t\t\t\"descripcion\": \"Producto Importado\",\n\t\t\t\t\"valorUnitario\": \"100\",\n\t\t\t\t\"importe\": \"500\",\n\t\t\t\t\"noIdentificacion\":\"SKU120312954\",\n\t\t\t\t\"informacionAduanera\": {\n\t\t\t\t\t\"numero\":\"099\",\n\t\t\t\t\t\"fecha\":\"2016-05-15\",\n\t\t\t\t\t\"aduana\":\"AD19888\"\n\t\t\t\t}\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"cantidad\": \"1\",\n\t\t\t\t\"unidad\": \"2\",\n\t\t\t\t\"descripcion\": \"Pago PRedial Vivienda\",\n\t\t\t\t\"noIdentificacion\": \"H22\",\n\t\t\t\t\"valorUnitario\": \"1563.22\",\n\t\t\t\t\"importe\": \"1563.22\",\n\t\t\t\t\"cuentaPredial\": {\n\t\t\t\t\t\"numero\":\"PRE03185430011\"\n\t\t\t\t}\n\t\t\t}\n\t\t],\n\t\t\"impuestos\": {\n\t\t\t\"totalImpuestosRetenidos\":\"12.33\",\n\t\t\t\"totalImpuestosTrasladados\":\"114.21\",\n\t\t\t\"retenciones\":[\n\t\t\t\t{\n\t\t\t\t\t\"impuesto\":\"ISR\",\n\t\t\t\t\t\"importe\":\"12.33\"\n\t\t\t\t}\n\t\t\t],\n\t\t\t\"traslados\":[\n\t\t\t\t{\n\t\t\t\t\t\"impuesto\":\"IVA\",\n\t\t\t\t\t\"tasa\":\"10\",\n\t\t\t\t\t\"importe\":\"114.21\"\n\t\t\t\t}\n\t\t\t]\n\t\t}\n\t}  \n   \n}"
+				},
+				"description": "stamp_1"
+			},
+			"response": []
+		},
+		{
+			"name": "Get invoices",
+			"request": {
+				"url": "{{sync_head_url}}invoicing/mx/invoices?api_key={{sync_api_key}}&id_user={{sync_id_user}}",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "\n{\n\"api_key\" : \"{{sync_api_key}}\",\n\"id_user\": \"{{sync_id_user}}\",\n\"id_provider\":\"acme\",\n\"invoice_data\": {   \n\t\t\"serie\": \"A\",\n\t\t\"folio\": \"35\",\n\t\t\"fecha\": \"{{new_iso_date}}\",\n\t\t\"formaDePago\": \"Parcialidad 1 de 30\",\n\t\t\"condicionesDePago\": \"Valido por 30 días\",\n\t\t\"subTotal\": \"2168.22\",\n\t\t\"descuento\":\"20\",\n\t\t\"motivoDescuento\":\"Promocion mensual\",\n\t\t\"tipoCambio\":\"18.22\",\n\t\t\"moneda\":\"MXN\",\n\t\t\"total\":\"2270.1\",\n\t\t\"tipoDeComprobante\":\"ingreso\",\n\t\t\"metodoDePago\":\"02\",\n\t\t\"lugarExpedicion\":\"Ciudad de México\",\n\t\t\"numCtaPago\":\"5219022\",\n\t\t\"emisor\": {\n\t\t\t\"nombre\":\"Alejandro Hernandez Rodriguez\",\n\t\t\t\"rfc\":\"AAA010101AAA\",\n\t\t\t\"domicilioFiscal\":{\n\t\t\t\t\"calle\":\"Calle 25\",\n\t\t\t\t\"municipio\":\"Monterrey\",\n\t\t\t\t\"estado\":\"Nuevo Leon\",\n\t\t\t\t\"pais\":\"Mexico\",\n\t\t\t\t\"codigoPostal\":\"64450 \"\n\t\t\t},\n\t\t\t\"expedidoEn\":{\n\t\t\t\t\"calle\":\"Calle 25\",\n\t\t\t\t\"municipio\":\"Monterrey\",\n\t\t\t\t\"estado\":\"Nuevo Leon\",\n\t\t\t\t\"pais\":\"Mexico\",\n\t\t\t\t\"codigoPostal\":\"64450 \"\n\t\t\t},\n\t\t\t\"regimenFiscal\":[{\"regimen\":\"Empleado Honorarios\"}]\n\t\t},\n\t\t\"receptor\":{\n\t\t\t\"rfc\":\"AOOM8309271A8\",\n\t\t\t\"nombre\": \"Pedro Perez Hernandez\",\n\t\t\t\"domicilio\":{\n\t\t\t\t\"calle\":\"Calle 25\",\n\t\t\t\t\"municipio\":\"Monterrey\",\n\t\t\t\t\"estado\":\"Nuevo Leon\",\n\t\t\t\t\"pais\": \"Mexico\",\n\t\t\t\t\"codigoPostal\":\"64450 \"\n\t\t\t}\n\t\t},\n\t\t\"conceptos\": [\n\t\t\t{\n\t\t\t\t\"cantidad\": \"10.5\",\n\t\t\t\t\"unidad\": \"Kg\",\n\t\t\t\t\"descripcion\": \"Alambre calibre 22\",\n\t\t\t\t\"noIdentificacion\": \"SK3218932190\",\n\t\t\t\t\"valorUnitario\": \"10\",\n\t\t\t\t\"importe\": \"105\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"cantidad\": \"5\",\n\t\t\t\t\"unidad\": \"Mt\",\n\t\t\t\t\"descripcion\": \"Producto Importado\",\n\t\t\t\t\"valorUnitario\": \"100\",\n\t\t\t\t\"importe\": \"500\",\n\t\t\t\t\"noIdentificacion\":\"SKU120312954\",\n\t\t\t\t\"informacionAduanera\": {\n\t\t\t\t\t\"numero\":\"099\",\n\t\t\t\t\t\"fecha\":\"2016-05-15\",\n\t\t\t\t\t\"aduana\":\"AD19888\"\n\t\t\t\t}\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"cantidad\": \"1\",\n\t\t\t\t\"unidad\": \"2\",\n\t\t\t\t\"descripcion\": \"Pago PRedial Vivienda\",\n\t\t\t\t\"noIdentificacion\": \"H22\",\n\t\t\t\t\"valorUnitario\": \"1563.22\",\n\t\t\t\t\"importe\": \"1563.22\",\n\t\t\t\t\"cuentaPredial\": {\n\t\t\t\t\t\"numero\":\"PRE03185430011\"\n\t\t\t\t}\n\t\t\t}\n\t\t],\n\t\t\"impuestos\": {\n\t\t\t\"totalImpuestosRetenidos\":\"12.33\",\n\t\t\t\"totalImpuestosTrasladados\":\"114.21\",\n\t\t\t\"retenciones\":[\n\t\t\t\t{\n\t\t\t\t\t\"impuesto\":\"ISR\",\n\t\t\t\t\t\"importe\":\"12.33\"\n\t\t\t\t}\n\t\t\t],\n\t\t\t\"traslados\":[\n\t\t\t\t{\n\t\t\t\t\t\"impuesto\":\"IVA\",\n\t\t\t\t\t\"tasa\":\"10\",\n\t\t\t\t\t\"importe\":\"114.21\"\n\t\t\t\t}\n\t\t\t]\n\t\t}\n\t}  \n   \n}"
+				},
+				"description": "stamp_1"
+			},
+			"response": []
+		},
+		{
+			"name": "Cancel invoice",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": "var jsonData = JSON.parse(responseBody);\nvar uuid = jsonData.response.uuid;\npostman.setGlobalVariable(\"synv_invoice_uuid\", uuid);"
+					}
+				}
+			],
+			"request": {
+				"url": "{{sync_head_url}}invoicing/mx/invoices/{{sync_invoice_uuid}}/cancel",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "\n{\n\"api_key\" : \"{{sync_api_key}}\",\n\"id_user\": \"{{sync_id_user}}\",\n\"id_provider\":\"acme\",\n\"invoice_data\": {   \n\t\t\"serie\": \"A\",\n\t\t\"folio\": \"35\",\n\t\t\"fecha\": \"{{new_iso_date}}\",\n\t\t\"formaDePago\": \"Parcialidad 1 de 30\",\n\t\t\"condicionesDePago\": \"Valido por 30 días\",\n\t\t\"subTotal\": \"2168.22\",\n\t\t\"descuento\":\"20\",\n\t\t\"motivoDescuento\":\"Promocion mensual\",\n\t\t\"tipoCambio\":\"18.22\",\n\t\t\"moneda\":\"MXN\",\n\t\t\"total\":\"2270.1\",\n\t\t\"tipoDeComprobante\":\"ingreso\",\n\t\t\"metodoDePago\":\"02\",\n\t\t\"lugarExpedicion\":\"Ciudad de México\",\n\t\t\"numCtaPago\":\"5219022\",\n\t\t\"emisor\": {\n\t\t\t\"nombre\":\"Alejandro Hernandez Rodriguez\",\n\t\t\t\"rfc\":\"AAA010101AAA\",\n\t\t\t\"domicilioFiscal\":{\n\t\t\t\t\"calle\":\"Calle 25\",\n\t\t\t\t\"municipio\":\"Monterrey\",\n\t\t\t\t\"estado\":\"Nuevo Leon\",\n\t\t\t\t\"pais\":\"Mexico\",\n\t\t\t\t\"codigoPostal\":\"64450 \"\n\t\t\t},\n\t\t\t\"expedidoEn\":{\n\t\t\t\t\"calle\":\"Calle 25\",\n\t\t\t\t\"municipio\":\"Monterrey\",\n\t\t\t\t\"estado\":\"Nuevo Leon\",\n\t\t\t\t\"pais\":\"Mexico\",\n\t\t\t\t\"codigoPostal\":\"64450 \"\n\t\t\t},\n\t\t\t\"regimenFiscal\":[{\"regimen\":\"Empleado Honorarios\"}]\n\t\t},\n\t\t\"receptor\":{\n\t\t\t\"rfc\":\"AOOM8309271A8\",\n\t\t\t\"nombre\": \"Pedro Perez Hernandez\",\n\t\t\t\"domicilio\":{\n\t\t\t\t\"calle\":\"Calle 25\",\n\t\t\t\t\"municipio\":\"Monterrey\",\n\t\t\t\t\"estado\":\"Nuevo Leon\",\n\t\t\t\t\"pais\": \"Mexico\",\n\t\t\t\t\"codigoPostal\":\"64450 \"\n\t\t\t}\n\t\t},\n\t\t\"conceptos\": [\n\t\t\t{\n\t\t\t\t\"cantidad\": \"10.5\",\n\t\t\t\t\"unidad\": \"Kg\",\n\t\t\t\t\"descripcion\": \"Alambre calibre 22\",\n\t\t\t\t\"noIdentificacion\": \"SK3218932190\",\n\t\t\t\t\"valorUnitario\": \"10\",\n\t\t\t\t\"importe\": \"105\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"cantidad\": \"5\",\n\t\t\t\t\"unidad\": \"Mt\",\n\t\t\t\t\"descripcion\": \"Producto Importado\",\n\t\t\t\t\"valorUnitario\": \"100\",\n\t\t\t\t\"importe\": \"500\",\n\t\t\t\t\"noIdentificacion\":\"SKU120312954\",\n\t\t\t\t\"informacionAduanera\": {\n\t\t\t\t\t\"numero\":\"099\",\n\t\t\t\t\t\"fecha\":\"2016-05-15\",\n\t\t\t\t\t\"aduana\":\"AD19888\"\n\t\t\t\t}\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"cantidad\": \"1\",\n\t\t\t\t\"unidad\": \"2\",\n\t\t\t\t\"descripcion\": \"Pago PRedial Vivienda\",\n\t\t\t\t\"noIdentificacion\": \"H22\",\n\t\t\t\t\"valorUnitario\": \"1563.22\",\n\t\t\t\t\"importe\": \"1563.22\",\n\t\t\t\t\"cuentaPredial\": {\n\t\t\t\t\t\"numero\":\"PRE03185430011\"\n\t\t\t\t}\n\t\t\t}\n\t\t],\n\t\t\"impuestos\": {\n\t\t\t\"totalImpuestosRetenidos\":\"12.33\",\n\t\t\t\"totalImpuestosTrasladados\":\"114.21\",\n\t\t\t\"retenciones\":[\n\t\t\t\t{\n\t\t\t\t\t\"impuesto\":\"ISR\",\n\t\t\t\t\t\"importe\":\"12.33\"\n\t\t\t\t}\n\t\t\t],\n\t\t\t\"traslados\":[\n\t\t\t\t{\n\t\t\t\t\t\"impuesto\":\"IVA\",\n\t\t\t\t\t\"tasa\":\"10\",\n\t\t\t\t\t\"importe\":\"114.21\"\n\t\t\t\t}\n\t\t\t]\n\t\t}\n\t}  \n   \n}"
+				},
+				"description": "stamp_1"
+			},
+			"response": []
+		},
+		{
+			"name": "Get providers list",
+			"request": {
+				"url": "{{sync_head_url}}invoicing/mx/providers?api_key={{sync_api_key}}&id_user={{sync_id_user}}",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "\n{\n\"api_key\" : \"{{sync_api_key}}\",\n\"id_user\": \"{{sync_id_user}}\",\n\"id_provider\":\"acme\",\n\"invoice_data\": {   \n\t\t\"serie\": \"A\",\n\t\t\"folio\": \"35\",\n\t\t\"fecha\": \"{{new_iso_date}}\",\n\t\t\"formaDePago\": \"Parcialidad 1 de 30\",\n\t\t\"condicionesDePago\": \"Valido por 30 días\",\n\t\t\"subTotal\": \"2168.22\",\n\t\t\"descuento\":\"20\",\n\t\t\"motivoDescuento\":\"Promocion mensual\",\n\t\t\"tipoCambio\":\"18.22\",\n\t\t\"moneda\":\"MXN\",\n\t\t\"total\":\"2270.1\",\n\t\t\"tipoDeComprobante\":\"ingreso\",\n\t\t\"metodoDePago\":\"02\",\n\t\t\"lugarExpedicion\":\"Ciudad de México\",\n\t\t\"numCtaPago\":\"5219022\",\n\t\t\"emisor\": {\n\t\t\t\"nombre\":\"Alejandro Hernandez Rodriguez\",\n\t\t\t\"rfc\":\"AAA010101AAA\",\n\t\t\t\"domicilioFiscal\":{\n\t\t\t\t\"calle\":\"Calle 25\",\n\t\t\t\t\"municipio\":\"Monterrey\",\n\t\t\t\t\"estado\":\"Nuevo Leon\",\n\t\t\t\t\"pais\":\"Mexico\",\n\t\t\t\t\"codigoPostal\":\"64450 \"\n\t\t\t},\n\t\t\t\"expedidoEn\":{\n\t\t\t\t\"calle\":\"Calle 25\",\n\t\t\t\t\"municipio\":\"Monterrey\",\n\t\t\t\t\"estado\":\"Nuevo Leon\",\n\t\t\t\t\"pais\":\"Mexico\",\n\t\t\t\t\"codigoPostal\":\"64450 \"\n\t\t\t},\n\t\t\t\"regimenFiscal\":[{\"regimen\":\"Empleado Honorarios\"}]\n\t\t},\n\t\t\"receptor\":{\n\t\t\t\"rfc\":\"AOOM8309271A8\",\n\t\t\t\"nombre\": \"Pedro Perez Hernandez\",\n\t\t\t\"domicilio\":{\n\t\t\t\t\"calle\":\"Calle 25\",\n\t\t\t\t\"municipio\":\"Monterrey\",\n\t\t\t\t\"estado\":\"Nuevo Leon\",\n\t\t\t\t\"pais\": \"Mexico\",\n\t\t\t\t\"codigoPostal\":\"64450 \"\n\t\t\t}\n\t\t},\n\t\t\"conceptos\": [\n\t\t\t{\n\t\t\t\t\"cantidad\": \"10.5\",\n\t\t\t\t\"unidad\": \"Kg\",\n\t\t\t\t\"descripcion\": \"Alambre calibre 22\",\n\t\t\t\t\"noIdentificacion\": \"SK3218932190\",\n\t\t\t\t\"valorUnitario\": \"10\",\n\t\t\t\t\"importe\": \"105\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"cantidad\": \"5\",\n\t\t\t\t\"unidad\": \"Mt\",\n\t\t\t\t\"descripcion\": \"Producto Importado\",\n\t\t\t\t\"valorUnitario\": \"100\",\n\t\t\t\t\"importe\": \"500\",\n\t\t\t\t\"noIdentificacion\":\"SKU120312954\",\n\t\t\t\t\"informacionAduanera\": {\n\t\t\t\t\t\"numero\":\"099\",\n\t\t\t\t\t\"fecha\":\"2016-05-15\",\n\t\t\t\t\t\"aduana\":\"AD19888\"\n\t\t\t\t}\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"cantidad\": \"1\",\n\t\t\t\t\"unidad\": \"2\",\n\t\t\t\t\"descripcion\": \"Pago PRedial Vivienda\",\n\t\t\t\t\"noIdentificacion\": \"H22\",\n\t\t\t\t\"valorUnitario\": \"1563.22\",\n\t\t\t\t\"importe\": \"1563.22\",\n\t\t\t\t\"cuentaPredial\": {\n\t\t\t\t\t\"numero\":\"PRE03185430011\"\n\t\t\t\t}\n\t\t\t}\n\t\t],\n\t\t\"impuestos\": {\n\t\t\t\"totalImpuestosRetenidos\":\"12.33\",\n\t\t\t\"totalImpuestosTrasladados\":\"114.21\",\n\t\t\t\"retenciones\":[\n\t\t\t\t{\n\t\t\t\t\t\"impuesto\":\"ISR\",\n\t\t\t\t\t\"importe\":\"12.33\"\n\t\t\t\t}\n\t\t\t],\n\t\t\t\"traslados\":[\n\t\t\t\t{\n\t\t\t\t\t\"impuesto\":\"IVA\",\n\t\t\t\t\t\"tasa\":\"10\",\n\t\t\t\t\t\"importe\":\"114.21\"\n\t\t\t\t}\n\t\t\t]\n\t\t}\n\t}  \n   \n}"
+				},
+				"description": "stamp_1"
+			},
+			"response": []
+		},
+		{
+			"name": "Deletes user",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": "tests[\"Testing user deleted\"] = responseCode.code === 200;\n\npostman.clearGlobalVariable(\"sync_id_user\");\npostman.clearGlobalVariable(\"sync_token\");\npostman.clearGlobalVariable(\"sync_id_test_site\");\npostman.clearGlobalVariable(\"sync_id_credential\");\npostman.clearGlobalVariable(\"sync_status_url\");\npostman.clearGlobalVariable(\"sync_head_url\");\npostman.clearGlobalVariable(\"sync_username\");\n\ntests[\"Postman global data deleted\"] = true;"
+					}
+				}
+			],
+			"request": {
+				"url": "{{sync_head_url}}users/{{sync_id_user}}?api_key={{sync_api_key}}",
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"description": ""
+			},
+			"response": []
 		}
 	]
 }

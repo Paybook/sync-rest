@@ -1,0 +1,119 @@
+{
+    "serie": "",
+    "folio": "",
+    "fecha": "",
+    "formaDePago": "",
+    "condicionesDePago" :  "",
+    "subTotal": "",
+    "descuento": "",
+    "motivoDescuento":"",
+    "tipoCambio": "",
+    "moneda" : "",
+    "total": "",
+    "tipoDeComprobante": "",
+    "metodoDePago": "",
+    "lugarExpedicion": "",
+    "numCtaPago" : "",
+    "folioFiscalOrig":"",
+    "serieFolioFiscalOrig":"",
+    "fechaFolioFiscalOrig" : "",
+    "montoFolioFiscalOrig" : "",
+    "emisor":{
+        "rfc": "",
+        "nombre": "",
+        "domicilioFiscal":{
+                    "calle": "",
+                    "noExterior": "",
+                    "noInterior": "",
+                    "colonia": "",
+                    "localidad": "",
+                    "referencia": "",
+                    "municipio": "",
+                    "estado": "",
+                    "pais": "",
+                    "codigoPostal": ""
+        },
+        "expedidoEn":{
+                    "calle": "",
+                    "noExterior": "",
+                    "noInterior": "",
+                    "colonia": "",
+                    "localidad": "",
+                    "referencia": "",
+                    "municipio": "",
+                    "estado": "",
+                    "pais": "",
+                    "codigoPostal": ""
+        },
+        "regimenFiscal":{
+                    "regimen":""
+        }
+    },
+    "receptor":{
+        "rfc": "",
+        "nombre":"",
+        "domicilio":{
+                    "calle": "",
+                    "noExterior": "",
+                    "noInterior": "",
+                    "colonia": "",
+                    "localidad": "",
+                    "referencia": "",
+                    "municipio": "",
+                    "estado": "",
+                    "pais": "",
+                    "codigoPostal": ""
+        }
+    },
+    "conceptos":[
+        {
+            "cantidad": "11",
+            "unidad": "1",
+            "descripcion": "COsa 3",
+            "valorUnitario": "22",
+            "importe": "55",
+            "noIdentificacion":"sku3213"
+        }
+        {
+            "cantidad": "1",
+            "unidad": "1",
+            "descripcion": "Producto Importado",
+            "valorUnitario": "100",
+            "importe": "1000",
+            "noIdentificacion":"SKU120312954"
+        }
+    ],
+    "impuestos":{
+        "totalImpuestosRetenidos": "",
+        "totalImpuestosTrasladados": "",
+        "retenciones":[
+            {
+                "impuesto":"",
+                "importe":""
+            }
+        ],
+        "traslados":[
+            {
+                "impuesto":"",
+                "tasa":"",
+                "importe":""
+            }
+        ]
+    },
+    "complemento":{
+        "impuestosLocales":{
+            "totalDeRetenciones":"",
+            "totalDeTraslados":"",
+            "retencionesLocales":[{
+                "impLocRetenido":"",
+                "tasaDeRetencion":"",
+                "importe":""
+            }],
+            "trasladosLocales":[{
+                "impLocTrasladado":"",
+                "tasaDeTraslado":"",
+                "importe":""
+            }]
+        }
+    }
+}
