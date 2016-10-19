@@ -628,8 +628,7 @@ El primer paso para generar un CFDI es agregar un contribuyente al sistema, cada
 ```
 POST invoicing/mx/taxpayers
 ```
-
-<p align="center"><img src="taxpayers.png" width="750" height="400"></p>
+<p align="center"><img src="https://github.com/Paybook/sync-rest/blob/master/src/taxpayers.png" width="750" height="400"></p>
 
 Como puede observarse en la imagen, además de los datos previamente mencionados, es necessario agregar el api_key de paybook y el id_user al cual se asociará el contribuyente.
 Para este tutorial de postman, se incluyen [credenciales que el SAT publica](http://www.sat.gob.mx/informacion_fiscal/factura_electronica/Paginas/certificado_sello_digital.aspx) para poder realizar pruebas. 
@@ -651,8 +650,8 @@ Una vez que se ha agregado un contribuyente y en caso de que sus credenciales ex
 GET invoicing/mx/taxpayers
 ```
 En la respuesta es un arreglo de objetos el cual contiene el RFC del contribuyente, además del rango de fechas en UNIX timestamp durante el cual es válido su certificado.
-<p align="center"><img src="taxpayersGet.png" width="750" height="180"></p>
 
+<p align="center"><img src="https://github.com/Paybook/sync-rest/blob/master/src/taxpayersGet.png" width="750" height="180"></p>
 
 <div id='invoices'/>
 
@@ -671,8 +670,7 @@ POST invoicing/mx/invoices
 
 En el ejemplo de postman se incluye una factura timbrada con el proveedor de sandbox "acme". Como se observa en la siguiente imagen en la respuesta de la llamada, se obtiene el XML de la factura ya timbrada, el UUID de esta, además de un campo llamado 'warnings', en el cual es un arreglo que muestra advertencias sobre posibles datos erroneos al generar la factura.
 
-<p align="center"><img src="invoicesPost.png" width="750" height="400"></p>
-
+<p align="center"><img src="https://github.com/Paybook/sync-rest/blob/master/src/invoicesPost.png" width="750" height="400"></p>
 
 ### Conversión a base64 
 Para realizar la conversión de los archivos a base64, se puede realizar en algún conversor en linea por ejemplo [este](http://base64-encoding.online-domain-tools.com).
@@ -725,8 +723,7 @@ PUT invoicing/mx/invoices/{{uuid}}/cancel
 
 La factura cancelada seguira almacenada en el sistema pero con el estado de cancelación. En la sigueinte imagen se observa que en la respuesta exitosa de cancelación contiene el parámetro 'success' igual a 'true', además del acuse de cancelación en formato XML, el cual proporcionan los proveedores de servicio de timbrado.
 
-
-<p align="center"><img src="invoicesPutCancel.png" width="750" height="180"></p>
+<p align="center"><img src="https://github.com/Paybook/sync-rest/blob/master/src/invoicesPutCancel.png" width="180" height="400"></p>
 
 <div id='providers'/>
 
@@ -739,9 +736,8 @@ Como se mencionó anteriormente, Paybook puede realizar el proceso de timbrado a
 ```
 GET invoicing/mx/providers?api_key={{sync_api_key}}&id_user={{sync_id_user}}
 ```
-<p align="center"><img src="providersGet.png" width="750" height="170"></p>
 
-
+<p align="center"><img src="https://github.com/Paybook/sync-rest/blob/master/src/providersGet.png" width="750" height="170"></p>
 
 <div id='delete_user'/>
 ## 14. Borrar Usuario
