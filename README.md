@@ -723,7 +723,7 @@ PUT invoicing/mx/invoices/{{uuid}}/cancel
 
 La factura cancelada seguira almacenada en el sistema pero con el estado de cancelación. En la sigueinte imagen se observa que en la respuesta exitosa de cancelación contiene el parámetro 'success' igual a 'true', además del acuse de cancelación en formato XML, el cual proporcionan los proveedores de servicio de timbrado.
 
-<p align="center"><img src="https://github.com/Paybook/sync-rest/blob/master/src/invoicesPutCancel.png" width="750" height="400"></p>
+<p align="center"><img src="https://github.com/Paybook/sync-rest/blob/master/src/invoicesPutCancel.png" width="750" height="170"></p>
 
 <div id='providers'/>
 
