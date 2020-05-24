@@ -1,5 +1,5 @@
 
-# Sync REST
+# Getting starter Sync REST with Postman
 
 A lo largo de este tutorial explicaremos como está estructurada una cuenta Paybook Sync. A su vez se explicará, haciendo uso de ejemplos, cómo podemos configurar una cuenta, organizar la información de las instituciones que sincronicemos a través de Paybook Sync además de como consultar esta información.
 Todo esto lo realizaremos consumiendo el [API REST de Paybook Sync](https://www.paybook.com/sync/docs) de manera directa.
