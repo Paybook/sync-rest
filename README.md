@@ -39,7 +39,7 @@ Todo esto lo realizaremos consumiendo el [API REST de Paybook Sync](https://www.
 <div id='postman'/>
 ## 2. Postman
 
-Como se mencionó previamente a lo largo de este tutorial se mostrarán ejemplos acerca de como implementar el API REST de Sync. Para esto haremos uso de [Postman](https://www.getpostman.com/) un cliente HTTP que nos permitirá hacer las peticiones al API así como analizar las respuestas de manera fácil y sencilla. Usted puede descargar el archivo [quickstart.json](https://github.com/Paybook/sync-rest/blob/master/quickstart.json) e importarlo a la aplicación de Postman. Con unos cuantos clics podrá acompañarnos a lo largo del tutorial. 
+Como se mencionó previamente a lo largo de este tutorial se mostrarán ejemplos acerca de como implementar el API REST de Sync. Para esto haremos uso de [Postman](https://www.getpostman.com/) un cliente HTTP que nos permitirá hacer las peticiones al API así como analizar las respuestas de manera fácil y sencilla. Usted puede descargar el archivo [quickstart.json](https://github.com/Paybook/sync-rest/blob/master/quickstart.json) e importarlo a la aplicación de Postman. Con unos cuantos clics podrá acompañarnos a lo largo del tutorial.
 
 ***Importante:*** Si bien el tutorial está basado en Postman y es recomendado que usted cuente con la aplicación, usted puede implementar el API con la herramienta que más esté familiarizado y seguir el tutorial sin ningún problema. De ser este su escenario puede brincarse al punto [API Key](#api_key).
 
@@ -48,7 +48,7 @@ Configurando [quickstart.json](https://github.com/Paybook/sync-rest/blob/master/
 1. Descarga el archivo [quickstart.json](https://github.com/Paybook/sync-rest/blob/master/quickstart.json)
 2. Abrir aplicación Postman en tu computadora
 3. En la parte superior izquierda dar clic en "Import" y posteriormente en la pestaña "Import File"
-4. Dar clic en "Choose Files" y seleccionar el archivo [quickstart.json](https://github.com/Paybook/sync-rest/blob/master/quickstart.json) que hemos descargado en el punto 1. 
+4. Dar clic en "Choose Files" y seleccionar el archivo [quickstart.json](https://github.com/Paybook/sync-rest/blob/master/quickstart.json) que hemos descargado en el punto 1.
 5. La colección se imporatará a la aplicación y la podremos visualizar del lado izquierdo con el nombre de "Sync Quickstart".
 
 Este archivo contiene 9 peticiones preconfiguradas para ti. Estas peticiones las iremos ejecutando a lo largo del tutorial.
@@ -69,11 +69,11 @@ Tu pantalla se debería de ver algo así:
 
 <p align="center"><img src="https://github.com/Paybook/sync-rest/blob/master/src/gv2.png" width="600" height="200"></p>
 
-Hecho esto hay que dar clic en "Save" y posteriormente cerrar la ventana. 
+Hecho esto hay que dar clic en "Save" y posteriormente cerrar la ventana.
 
 Para verificar que nuestra API key se haya agregado correctamente podemos ir nuevamente al icono con forma de ojo y dar clic. Debemos ver que el valor de nuestra API key ya se encuentra cargado como variable global de Postman como se muestra a continuación:
 
-<p align="center"><img src="https://github.com/Paybook/sync-rest/blob/master/src/gv3.png" width="120" height="120"></p> 
+<p align="center"><img src="https://github.com/Paybook/sync-rest/blob/master/src/gv3.png" width="120" height="120"></p>
 
 ***Importante:*** en el punto de [Consulta de Usuarios](#postman_explanation) se hace una breve descripción de la interfaz y el manejo de Postman es recomendable consultarlo en su momento.
 
@@ -81,7 +81,7 @@ Para verificar que nuestra API key se haya agregado correctamente podemos ir nue
 
 <p align="center"><img src="https://github.com/Paybook/sync-rest/blob/master/src/gv4.png" width="700" height="90"></p>
 
-Estos valores son preconfiguraciones que hemos hecho por ti. Estos valores se pueden traducir a una URL, por ejemplo, https://sync.paybook.com/v1/users, o bien, algo como esto {{sync_api_key}} se traduce al API key que has configurado. De esta forma hemos configurado la mayoría de las llamadas y los parámetros que éstas requieren de tal manera que nos podamos enfocar en la implementación de Paybook Sync. Sin embargo, no pierdas de vista que al final del camino estamos consumiendo los endpoints del API y mandando los valores de acuerdo a los parámetros que nos solicita cada endpoint respectivamente.
+Estos valores son preconfiguraciones que hemos hecho por ti. Estos valores se pueden traducir a una URL, por ejemplo, https://opendata-api.syncfy.com/v1/users, o bien, algo como esto {{sync_api_key}} se traduce al API key que has configurado. De esta forma hemos configurado la mayoría de las llamadas y los parámetros que éstas requieren de tal manera que nos podamos enfocar en la implementación de Paybook Sync. Sin embargo, no pierdas de vista que al final del camino estamos consumiendo los endpoints del API y mandando los valores de acuerdo a los parámetros que nos solicita cada endpoint respectivamente.
 
 Para mayor información puedes consultar la [Documentación de Postman](https://www.getpostman.com/docs/) directamente.
 
@@ -97,7 +97,7 @@ Cuando creamos una cuenta de Paybook Sync se nos proporcionó una API key, por e
 api_key = 7767a4a04f990e9231bafc949e8ca08a
 ```
 
-Este API key lo podemos visualizar como la contraseña o llave de acceso a los servicios de Paybook Sync. Únicamente a través de ella podremos consultar la información de las instituciones que sincronicemos así como hacer las configuraciones necesarias para que esto último pueda ser posible. 
+Este API key lo podemos visualizar como la contraseña o llave de acceso a los servicios de Paybook Sync. Únicamente a través de ella podremos consultar la información de las instituciones que sincronicemos así como hacer las configuraciones necesarias para que esto último pueda ser posible.
 
 Si Mateo es un desarrallodor que está haciendo uso de Paybook Sync su API Key será la llave de acceso (como desarrollador) a toda la información que Paybook Sync le proporciona.
 
@@ -121,7 +121,7 @@ Pero una mejor práctica es hacer una clasificación correcta de la información
 
   <p align="center"><img src="https://github.com/Paybook/sync-rest/blob/master/src/ak_users.png" width="150" height="200"></p>
 
-***Importante:*** estos usuarios que Mateo ha creado ***no tienen una cuenta de Paybook, ni tampoco una cuenta de Paybook Sync***, el único que tiene una cuenta en Paybook es Mateo. Él únicamente ha creado estos usuarios para clasificar la información de su cuenta de Sync de tal manera que él pueda hacer consultas y gestionar esa información fácilmente. Por lo tanto ***no debe confundir estos usuarios con su usuario de Paybook o de Sync***, a este último normalmente nos referiremos más como tu *Cuenta de Paybook* o tu *Cuenta de Sync*. 
+***Importante:*** estos usuarios que Mateo ha creado ***no tienen una cuenta de Paybook, ni tampoco una cuenta de Paybook Sync***, el único que tiene una cuenta en Paybook es Mateo. Él únicamente ha creado estos usuarios para clasificar la información de su cuenta de Sync de tal manera que él pueda hacer consultas y gestionar esa información fácilmente. Por lo tanto ***no debe confundir estos usuarios con su usuario de Paybook o de Sync***, a este último normalmente nos referiremos más como tu *Cuenta de Paybook* o tu *Cuenta de Sync*.
 
 Una vez que hallamos entendido la diferencia entre nuestro API Key y nuestros usuarios podemos crear usuarios así como consultar los usuarios que están ligados a nuestra API key.
 
@@ -138,10 +138,10 @@ Una vez que hallamos seleccionado está petición podemos observar la estructura
 
    <p align="center"><img src="https://github.com/Paybook/sync-rest/blob/master/src/postman.png" width="500" height="300"></p>
 
-A continuación se describen brevemente los componentes básicos que estaremos analizando a lo largo del tutorial: 
+A continuación se describen brevemente los componentes básicos que estaremos analizando a lo largo del tutorial:
 
 1. Aquí se selcciona el método/verbo de HTTP de la consulta.
-2. Aquí se selecciona la URL del API (en este caso siempre será la de Paybook Sync i.e. https://sync.paybook.com/v1/<endpoint>)
+2. Aquí se selecciona la URL del API (en este caso siempre será la de Paybook Sync i.e. https://opendata-api.syncfy.com/v1/<endpoint>)
 3. Este botón "Params" es para abrir la interfaz para introducir los parámetros que queramos enviar en [query string](https://en.wikipedia.org/wiki/Query_string) (ver punto 5)
 4. Este botón "Send" lo oprimiremos cada vez que queramos realizar la consulta
 5. En esta sección introducimos cada uno de los parámetros a enviar en [query string](https://en.wikipedia.org/wiki/Query_string).
@@ -154,7 +154,7 @@ Entonces una vez que hemos entendido la estructura básica de Postman, veremos q
 Esto indica que estamos:
 
 - Usando el método/verbo ***GET*** (ya que estamos consultando)
-- Consultando el endpoint de Paybook Sync ***/users*** (https://sync.paybook.com/v1/users)
+- Consultando el endpoint de Paybook Sync ***/users*** (https://opendata-api.syncfy.com/v1/users)
 - Mandando como ***parámetro en [query string](https://en.wikipedia.org/wiki/Query_string) nuestro api_key***.
 
 ***Importante:*** si usted no está haciendo uso de Postman es importante identificar estos valores para que pueda hacer las peticiones con la herramienta de su elección.
@@ -195,12 +195,12 @@ Para crear un usuario podemos seleccionar en la colección de Postman la segunda
 
    <p align="center"><img src="https://github.com/Paybook/sync-rest/blob/master/src/creates_user.png" width="600" height="200"></p>
 
-Aquí, a diferencia de la consulta de usuarios, estamos enviando los parámetros en Body, sin embargo las demás especificaciones son iguales. 
+Aquí, a diferencia de la consulta de usuarios, estamos enviando los parámetros en Body, sin embargo las demás especificaciones son iguales.
 
 Esto indica que estamos:
 
 - Usando el método/verbo ***POST*** (ya que estamos creando)
-- Consultando el endpoint de Paybook Sync ***/users*** (https://sync.paybook.com/v1/users)
+- Consultando el endpoint de Paybook Sync ***/users*** (https://opendata-api.syncfy.com/v1/users)
 - Estamos mandando como ***parámetro en el [body](http://stackoverflow.com/questions/14551194/how-are-parameters-sent-in-an-http-post-request) nuestro api_key así como el nombre del usuario*** que vamos a crear.
 
 Y podremos ver una respuesta como la siguiente:
@@ -211,14 +211,14 @@ Entonces, sabiendo esto, lo que Mateo tendría que hacer es crear 3 usuarios, un
 
    <p align="center"><img src="https://github.com/Paybook/sync-rest/blob/master/src/ak_users.png" width="150" height="200"></p>
 
-Una vez hecho esto si él consulta los usuarios ligados a su API key (como también se hizo anteriormente) obtendría un arreglo con sus tres usuarios. 
+Una vez hecho esto si él consulta los usuarios ligados a su API key (como también se hizo anteriormente) obtendría un arreglo con sus tres usuarios.
 
 ¿Por qué no intentas tu crear algunos usarios con tu API key así como consultar la lista de usuarios ligados a ésta? Una vez que domines esto podremos continuar con los siguientes puntos del tutorial.
 
 <div id='sessions'/>
 ##5. Sesiones
 
-Otro de los conceptos que es importante que entendamos es el manejo de sesiones. Una forma de autenticarte con el API de Paybook es por medio de tu API key, haciendo uso de ella podrás hacer cualquier consulta o modificación de información de tu cuenta de Sync. Esto implica poder actualizar o consultar la información de cualquier institución de cualquier usuario que esté ligado a tu API key. Aunque esto tenga ciertos beneficios o bondades dependiendo de la lógica de tu aplicación puede ser inseguro en cierta medida. 
+Otro de los conceptos que es importante que entendamos es el manejo de sesiones. Una forma de autenticarte con el API de Paybook es por medio de tu API key, haciendo uso de ella podrás hacer cualquier consulta o modificación de información de tu cuenta de Sync. Esto implica poder actualizar o consultar la información de cualquier institución de cualquier usuario que esté ligado a tu API key. Aunque esto tenga ciertos beneficios o bondades dependiendo de la lógica de tu aplicación puede ser inseguro en cierta medida.
 
 Otro modo de autenticarte con el API es por medio de una sesión. La diferencia particular es que una sesión va ligada directamente a un usuario y únicamente puede consultar o actualizar la información de éste (a diferencia del API key con la que puedes consultar todo). Para iniciar una sesión puedes seleccionar en Postman la petición *Inits Session*:
 
@@ -236,13 +236,13 @@ token = 4cacd8126db956631cde03f234544bf5
 
 El valor de este token es el que podemos usar para autenticarnos con el API en vez de usar nuestro API key.
 
-***Importante:*** a partir de aquí la autenticación que haremos en el tutorial será por medio del token. ***Recuerda que éste únicamente podrá modificar o consultar la información del usuario con el que hayas creado la sesión***. 
+***Importante:*** a partir de aquí la autenticación que haremos en el tutorial será por medio del token. ***Recuerda que éste únicamente podrá modificar o consultar la información del usuario con el que hayas creado la sesión***.
 
 ***Importante:*** algunos métodos únicamente pueden autenticarse por medio del API key. Para más detalles consulta la [documentación general de Paybook Sync](https://www.paybook.com/sync/docs)
 
-***Importante:*** Técnicamente la autenticación por medio del token es análoga a autenticarte por medio del API key y pasando como parámetro el id_user (token <--> api_key + id_user). La lógica es la misma, salvo que en la primera no se expone el valor de tu API key. 
+***Importante:*** Técnicamente la autenticación por medio del token es análoga a autenticarte por medio del API key y pasando como parámetro el id_user (token <--> api_key + id_user). La lógica es la misma, salvo que en la primera no se expone el valor de tu API key.
 
-***Importante:*** No confundir este token con el "token bancario" que es el que se utiliza al momento de sincronizar una institución cuya autenticación requiere token. El token que aquí manejamos únicamente es para autenticarse con el API. 
+***Importante:*** No confundir este token con el "token bancario" que es el que se utiliza al momento de sincronizar una institución cuya autenticación requiere token. El token que aquí manejamos únicamente es para autenticarse con el API.
 
 <div id='catalogues'/>
 
@@ -255,7 +255,7 @@ Continuando la situación de Mateo. Quedamos que Mateo tenía 3 clientes:
 - Otra empresa: Starbucks Juriquilla
 
 Él ya creo un usuario para cada uno de sus clientes. Él sabe que, por ejemplo, respecto a José Ochoa necesita tener acceso a su información en el SAT (sus facturas tanto de ingresos como egresos), pero también necesita acceso partícularmente a las dos cuentas bancarias que maneja José Ochoa, Santander y Banamex. Así como el cliente José Ochoa, WalMart y Starbucks tienen sus propias cuentas bancarias y registro fiscal, entonces la cuenta de Paybook Sync de Mateo podría tener la siguiente estructura:
- 
+
    <p align="center"><img src="https://github.com/Paybook/sync-rest/blob/master/src/inst.png" width="250" height="200"></p>
 
 Aquí podemos ver que cada usuario tendría sus propias instituciones (entiéndase instituciones como una forma de referirse a los bancos o el SAT), es decir, José Ochoa tendría registrado al SAT así como su cuenta de Santander y Banamex. Walmart tendría registradas sus ***propias cuentas*** de Banamex y American Express y lo mismo para Starbucks Juriquilla con Banamex, BBVA y Banorte, pero ¿Cómo quedaría todo esto estructurado en nuestra cuenta de Paybook Sync, o bien, en la cuenta de Mateo?.
@@ -347,11 +347,11 @@ El mismo análisis Mateo lo tiene que hacer para las demás instituciones y uste
 <div id='accounts'/>
 #### Cuentas
 
-Además de entender que Paybook nos proporciona un catálogo de las instituciones que podemos sincronizar por cada uno de nuestros usuarios. Hay algunos conceptos que hay que entender acerca de como sincronizar, o bien, gestionar las instituciones que queremos sincronizar. 
+Además de entender que Paybook nos proporciona un catálogo de las instituciones que podemos sincronizar por cada uno de nuestros usuarios. Hay algunos conceptos que hay que entender acerca de como sincronizar, o bien, gestionar las instituciones que queremos sincronizar.
 
-Supongamos que el cliente José Ochoa le dijo a Mateo que tenía cuentas bancarias en Santander y Mateo dijo -- claro, está perfecto -- pero el cliente nunca le dijo cuantas cuentas, o bien, el cliente omitió decirle a Mateo que cuenta con 2 razones sociales (2 RFCs). Pero bueno Mateo es un excelente desarrollador y le dijo a su cliente que no había problema y que lo iba agregar a los requerimientos de la aplicación que le está desarrollando. 
+Supongamos que el cliente José Ochoa le dijo a Mateo que tenía cuentas bancarias en Santander y Mateo dijo -- claro, está perfecto -- pero el cliente nunca le dijo cuantas cuentas, o bien, el cliente omitió decirle a Mateo que cuenta con 2 razones sociales (2 RFCs). Pero bueno Mateo es un excelente desarrollador y le dijo a su cliente que no había problema y que lo iba agregar a los requerimientos de la aplicación que le está desarrollando.
 
-Aquí hay cuestiones importantes que Mateo o tu podrían enfrentarse. Pueden sincronizar todas las cuentas de un banco o todas las facturas del SAT de un usuario (aquí el clasificador sería la institución) y Mateo podría saber, por ejemplo, las transacciones que tiene José Ochoa en Santander o en el SAT. Pero que tal si se requiere saber los movimientos que tiene en Santander pero en una cuenta especifica o en el SAT pero en determinada razón social. 
+Aquí hay cuestiones importantes que Mateo o tu podrían enfrentarse. Pueden sincronizar todas las cuentas de un banco o todas las facturas del SAT de un usuario (aquí el clasificador sería la institución) y Mateo podría saber, por ejemplo, las transacciones que tiene José Ochoa en Santander o en el SAT. Pero que tal si se requiere saber los movimientos que tiene en Santander pero en una cuenta especifica o en el SAT pero en determinada razón social.
 
 Para resolver esta clase de cosas existe el elemento Cuentas (accounts). En realidad Mateo no está sincronizando instituciones como tal, en el fondo está sincronizando cuentas específicas (cuentas bancarias o RFCs) que pertenecen, por supuesto, a determinadas instituciones. Entonces por ejemplo en el caso de su cliente José Ochoa, Mateo tendría algo así:
 
@@ -364,7 +364,7 @@ La forma en que Paybook Sync logra esto es por medio de las cuentas. Cada RFC, o
 
 Por otro lado se encuentran las credenciales. Las credenciales están relacionadas con las cuentas en el sentido de que cada cuenta debe tener unas credenciales y estas últimas almacenan la información necesaria para realizar la sincronización de esa cuenta especifica. La información que tienen las credenciales consiste en:
 
-- Contraseña y password del usuario para esa institución. 
+- Contraseña y password del usuario para esa institución.
 - Información acerca de la consulta del estado de la sincronización. Vía web socket o consultando un endpoint de status (esto se verá más adelante).
 
 <div id='create_accounts_and_credentials'/>
@@ -407,7 +407,7 @@ Los datos contenidos en este elemento los requeriremos cada que querramos sincro
 
 1. Un token de sesión (o bien un API key) dependiendo de como se quiera hacer la autenticación con el API.
 2. El id del sitio o institución que quieres sincronizar. Este viene como ***id_site*** en cada institución al momento de consultar el catálogo.
-3. El valor de las credenciales (usuario y contraseña) para esa institución que quieras sincronizar. 
+3. El valor de las credenciales (usuario y contraseña) para esa institución que quieras sincronizar.
 
 Es importante que, con respecto al punto 3, el valor de estas credenciales se debe enviar como se especifica en la propiedad credentials del elemento correspondiente en el catálogo de la institución que queremos sincronizar, para el caso de la institución Normal (el ejemplo que tenemos arriba) en el elemento del catálogo se especifica lo siguiente en la propiedad credentials:
 
@@ -482,7 +482,7 @@ La misma lógica se tiene que realizar para sincronizar cualquier institución. 
 1. Obtener el id_site de esa institución
 2. Obtener la estructura del objeto que usaremos para enviar los valores de las credenciales.
 
-***Importante:*** La misma lógica aplica independientemente si es un catálogo real o de prueba, ambos tienen la misma estructura. 
+***Importante:*** La misma lógica aplica independientemente si es un catálogo real o de prueba, ambos tienen la misma estructura.
 
 ***Importante:*** Al usar un catálogo de prueba siempre se tienen que enviar el valor "test" tanto en "username_value" como en "password_value" (en "bank_token_value" igual en caso de requerirse). Este valor es constante independientemente de la institución de prueba que se esté manejando.
 
@@ -507,10 +507,10 @@ En resumen todo quedará ligado al API key de Mateo pero de una manera organizad
 
 1. Su API key (recuadro verde).
 2. Un usuario por cada cliente que el tiene y estos a su vez están ligados a su API key (recuadro rosa).
-3. Cada usuario tiene sus propias cuentas que a su vez están relacionadas con alguna institución o sitio. (recuadros azul, amarillo). 
+3. Cada usuario tiene sus propias cuentas que a su vez están relacionadas con alguna institución o sitio. (recuadros azul, amarillo).
 4. Cada cuenta tiene unas credenciales asociadas (recuadros amarillo y morado).
 
-Nótese como en esta estructura no están contenidos los catálogos que vimos anteriormente. Esto es por que los catálogos de instituciones no le pertenecen al usuario, estos catálogos son globales y son catálogos que ofrece Paybook Sync y no están ligados a ninguna cuenta de Paybook Sync en específico, a diferencia de los usuarios, cuentas y credenciales que si están ligados a un API key y por lo tanto a una cuenta de Paybook Sync, en este caso, la de Mateo. 
+Nótese como en esta estructura no están contenidos los catálogos que vimos anteriormente. Esto es por que los catálogos de instituciones no le pertenecen al usuario, estos catálogos son globales y son catálogos que ofrece Paybook Sync y no están ligados a ninguna cuenta de Paybook Sync en específico, a diferencia de los usuarios, cuentas y credenciales que si están ligados a un API key y por lo tanto a una cuenta de Paybook Sync, en este caso, la de Mateo.
 
 Más adelante veremos que las transacciones sincronizadas de alguna institución las podrás filtrar por usuario, por sitio o institución, por cuenta o credencial y por cualquier combinación de éstas, además de poder agregar filtros de temporalidad.
 
@@ -522,7 +522,7 @@ En resumen, el simple hecho de crear unas credenciales implica que vamos a sincr
 Pero una vez que hemos creado unas credenciales tenemos que esperar a que Paybook valide éstas y, en caso de ser validas, realice el proceso de sincronización (traer las transacciones de esa cuenta). En este proceso puede haber distintos estados, por ejemplo:
 
 - Las credenciales introducidas pueden ser inválidas
-- Las credenciales introducidas son válidas pero se requiere de un token bancario, captcha, etc. por lo que éste se le debe solicitar al usuario. 
+- Las credenciales introducidas son válidas pero se requiere de un token bancario, captcha, etc. por lo que éste se le debe solicitar al usuario.
 - Las credenciales, el token bancario, y demás fueron válidos y la cuenta se está sincronizando.
 - La cuenta ha terminado de sincronizarse.
 
@@ -543,7 +543,7 @@ Toda esta información la podemos obtener a través de los datos que el API nos 
 }
 ```
 
-En este caso únicamente explicaremos la propiedad "status". Las demás están fuera del alcance de este tutorial, sin embargo, puedes consultar la documentación del API o bien otros tutoriales para checar su funcionamiento. 
+En este caso únicamente explicaremos la propiedad "status". Las demás están fuera del alcance de este tutorial, sin embargo, puedes consultar la documentación del API o bien otros tutoriales para checar su funcionamiento.
 
 La propiedad ***"status"*** es una URL específica que Paybook Sync nos crea para qué, a través de ella, podamos consultar precisamente eso, el estatus de la sincronización de las credenciales que hemos creado. En Postman podemos seleccionar la petición *Check credentials sync status*
 
@@ -553,18 +553,18 @@ Cuya respuesta es una serie de códigos (códigos de estatus de sincronización)
 
    <p align="center"><img src="https://github.com/Paybook/sync-rest/blob/master/src/resp_status.png" width="600" height="250"></p>
 
-Los diferentes estatus y su significado se pueden consultar en la [documentación general de Paybook Sync](https://www.paybook.com/sync/docs#api-Quickstart-Quickstart) y es trabajo del desarrollador programar su propia rutina dependiendo el tipo de estatus que obtenga, es decir, si el estatus es 401 que significa que las credenciales introducidas son iválidas, es trabajo del desarrollador programar una rutina que vuelva a pedir las credenciales y volver a consumir el endpoint de crear credenciales esta vez con los valores adecuados. 
+Los diferentes estatus y su significado se pueden consultar en la [documentación general de Paybook Sync](https://www.paybook.com/sync/docs#api-Quickstart-Quickstart) y es trabajo del desarrollador programar su propia rutina dependiendo el tipo de estatus que obtenga, es decir, si el estatus es 401 que significa que las credenciales introducidas son iválidas, es trabajo del desarrollador programar una rutina que vuelva a pedir las credenciales y volver a consumir el endpoint de crear credenciales esta vez con los valores adecuados.
 
 Partícularmente si hemos sincronizado una institución de prueba Normal, podemos esperar por el estatus 200 que significa que la sincronización ha terminado, por tanto, ya hay transacciones de esa cuenta en específico que podemos consultar. Esto lo analizaremos en el siguiente apartado.
 
 <div id='transactions'/>
 ## 9. Consulta de Transacciones
 
-Una vez que hemos creado credenciales, monitoreado su estatus y verficado que la sincronización haya terminado exitósamente (código 200 en status), podemos consultar las transacciones de esa cuenta en específico. En Postman podemos seleccionar la petición *Get transactions* y ejecutarla. 
+Una vez que hemos creado credenciales, monitoreado su estatus y verficado que la sincronización haya terminado exitósamente (código 200 en status), podemos consultar las transacciones de esa cuenta en específico. En Postman podemos seleccionar la petición *Get transactions* y ejecutarla.
 
    <p align="center"><img src="https://github.com/Paybook/sync-rest/blob/master/src/transactions.png" width="600" height="150"></p>
 
-Nótese como estamos consultando las transacciones filtrando por id_credential esto quiere decir que únicamente queremos consultar las transacciones que se han sincronizado para la cuenta cuyas credenciales son aquellas cuyo id es id_credential. De esta misma manera podríamos filtrar por id_site para alguna institución, id_account para alguna cuenta, etc. Igual es importante mencionar que como la autenticación se está haciendo por token de sesión y éste está relacionado con un usuario específico (aquel que se utilizó al crear la sesión) automáticamente esta consulta regresa transacciones pertenecientes a ese usuario. 
+Nótese como estamos consultando las transacciones filtrando por id_credential esto quiere decir que únicamente queremos consultar las transacciones que se han sincronizado para la cuenta cuyas credenciales son aquellas cuyo id es id_credential. De esta misma manera podríamos filtrar por id_site para alguna institución, id_account para alguna cuenta, etc. Igual es importante mencionar que como la autenticación se está haciendo por token de sesión y éste está relacionado con un usuario específico (aquel que se utilizó al crear la sesión) automáticamente esta consulta regresa transacciones pertenecientes a ese usuario.
 
 En la respuesta de esta consulta veremos un arreglo de elementos (transacciones) con la siguiente estructura:
 
@@ -611,7 +611,7 @@ Que contiene información de la transacción, ya sea bancaria o fiscal. Para ter
 
    <p align="center"><img src="https://github.com/Paybook/sync-rest/blob/master/src/all_t.png" width="500" height="400"></p>
 
-No hay diferencia con el diagrama que expusimos previamente. Salvo que en éste ya se muestran las transacciones de cada una de las cuentas que Mateo ha sincronizado para cada uno de sus usuarios (recuadro rojo). Al final estas transacciones también estarán ligadas a tu API key. 
+No hay diferencia con el diagrama que expusimos previamente. Salvo que en éste ya se muestran las transacciones de cada una de las cuentas que Mateo ha sincronizado para cada uno de sus usuarios (recuadro rojo). Al final estas transacciones también estarán ligadas a tu API key.
 
 <div id='invoicing'/>
 
@@ -623,7 +623,7 @@ A través del servicio REST Sync es poible realizar el timbrado de [CFDI's](http
 2. Toda factura expedida a través de Sync será validada
 3. Cancelación de facturas timbradas
 4. Consulta de facturas timbradas
-5. El usuario podrá elegir con qué proveedor quiere timbrar facturas. 
+5. El usuario podrá elegir con qué proveedor quiere timbrar facturas.
 
 <div id='taxpayers'/>
 
@@ -635,7 +635,7 @@ El primer paso para generar un CFDI es agregar un contribuyente al sistema, cada
 
 - RFC del contribuyente.
 - Credenciales [CSD](http://www.sat.gob.mx/informacion_fiscal/tramites/comprobantes_fiscales/Paginas/ficha_108_cff.aspx). Estos son 2 archivos en formato cer y key los cuales deben ser codificados en base64 al ser enviados en la petición.
-- Contraseña de los CSDs. 
+- Contraseña de los CSDs.
 - API key de Sync.
 - Usuario de Sync -- id_user. Este sería el id del usuario al cual se asociará el contribuyente.
 
@@ -644,7 +644,7 @@ POST invoicing/mx/taxpayers
 ```
 <p align="center"><img src="https://github.com/Paybook/sync-rest/blob/master/src/taxpayers.png" width="750" height="400"></p>
 
-Para este tutorial de postman, se incluyen [credenciales que el SAT publica](http://www.sat.gob.mx/informacion_fiscal/factura_electronica/Paginas/certificado_sello_digital.aspx) para poder realizar pruebas. 
+Para este tutorial de postman, se incluyen [credenciales que el SAT publica](http://www.sat.gob.mx/informacion_fiscal/factura_electronica/Paginas/certificado_sello_digital.aspx) para poder realizar pruebas.
 
 
 ### Actualizar información de un contribuyente
@@ -689,24 +689,24 @@ En el ejemplo de postman se incluye una factura timbrada con el proveedor de san
 
 <p align="center"><img src="https://github.com/Paybook/sync-rest/blob/master/src/invoicesPost.png" width="750" height="400"></p>
 
-### Conversión a base64 
+### Conversión a base64
 Para realizar la conversión de los archivos a base64, se puede hacer uso de algún conversor en línea por ejemplo [este](http://base64-encoding.online-domain-tools.com).
 
 También se puede hacer desde la consola de comandos
 
-#### Windows 
+#### Windows
 ```
 certutil -encode archivo_entrada.cer archivo_salida_base64.txt
 ```
 Nota: El string que se envia,no debe incluir esta entre "-----BEGIN CERTIFICATE-----"  y "-----END CERTIFICATE-----", además se deben eliminar los retornos y tabs del string.
 
-#### OS X 
+#### OS X
 ```
 openssl base64 -in 'archivo_entrada.cer' -out 'archivo_salida_base64.txt'
 ```
 Nota: se deben eliminar los retornos y y tabs del archivo.
 
-#### Linux 
+#### Linux
 ```
 base64 archivo_entrada.cer >archivo_salida_base64.txt
 ```
@@ -763,7 +763,7 @@ Por último, a manera opcional, puedes borrar el usuario que hemos creado para e
 
 <p align="center"><img src="https://github.com/Paybook/sync-rest/blob/master/src/delete_user.png" width="600" height="150"></p>
 
-Esta acción borrará toda la información relacionada con este usuario dejando tu cuenta limpia, es decir, ***borrar un usuario de tu cuenta de Paybook Sync borrará todas sus credenciales, cuentas, transacciones y demás información relacionada con éste***. 
+Esta acción borrará toda la información relacionada con este usuario dejando tu cuenta limpia, es decir, ***borrar un usuario de tu cuenta de Paybook Sync borrará todas sus credenciales, cuentas, transacciones y demás información relacionada con éste***.
 
 <div id='conclusion'/>
 ## Conclusión
@@ -775,7 +775,7 @@ A través de este tutorial esperamos que hayas podido implementar el API de Payb
 Una vez que hayas terminado este tutorial puedes consultar todos los recursos que tenemos para ti. Paybook Sync cuenta con:
 
 - Librerías en una gran variedad de tecnologías que te permitirán conectar tu aplicación con Paybook de una manera rápida y sencilla.  
-- Aplicaciones totalmente integras de código abierto que puedes descargar para iniciar tu aplicación tomando como base éstas (estos proyectos los encontrarás como lites). 
+- Aplicaciones totalmente integras de código abierto que puedes descargar para iniciar tu aplicación tomando como base éstas (estos proyectos los encontrarás como lites).
 - [Documentación del API Rest](https://www.paybook.com/sync/docs)
 - Tutoriales y documentación para ayudarte en la integración de Paybook Sync a tu aplicación.
 
